@@ -18,6 +18,8 @@
 
 :small_blue_diamond: [Technologies & Tools](#technologies)
 
+:small_blue_diamond: [Caso de Uso](#caso-de-uso)
+
 
 
 ## Descrição do projeto 
@@ -59,7 +61,11 @@ Time responsável pelo desenvolvimento do projeto
 
 ![Diagrama](https://user-images.githubusercontent.com/42613597/162584981-8d63a673-30f3-46b7-9412-aad26360b398.png)
 
-💻
+## Caso-de-uso
+
+![casos de uso](https://user-images.githubusercontent.com/42613597/162586347-c043be7a-89a4-435c-8186-6fd8bdf838e7.png)
+
+
 ## Technologies
 
 <p align="">
