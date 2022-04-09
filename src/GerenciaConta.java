@@ -9,7 +9,7 @@ import java.util.Scanner;
 				int resp;
 
 				Scanner in = new Scanner(System.in);
-				List<Conta_Corrente> ListCC = new ArrayList<>();
+				List<ContaCorrente> ListCC = new ArrayList<>();
 
 				System.out.println("=====|SISTEMA BANCARIO|=====");
 				do {
@@ -24,7 +24,7 @@ import java.util.Scanner;
 
 			}
 
-			public static Conta_Corrente criarContaCorrent() {
+			public static ContaCorrente criarContaCorrent() {
 
 				Scanner in = new Scanner(System.in);
 				System.out.println("Digitar : NUMERO CONTA");
@@ -34,7 +34,7 @@ import java.util.Scanner;
 				System.out.println("Digitar : NUMERO CREDITO");
 				String inCredito = in.next();
 
-				Conta_Corrente CC = new Conta_Corrente(inCC, inSaldo,inCredito);
+				ContaCorrente CC = new ContaCorrente(inCC, inSaldo,inCredito);
 				return CC;
 			}
 
