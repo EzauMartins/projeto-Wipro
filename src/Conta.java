@@ -1,7 +1,7 @@
 abstract class Conta {
-    int numConta;
-    double saldo = 5;
-    double Credito;
+    String numConta;
+    double saldo;
+    String numCartao;
 
     public void infConta(){
         System.out.println("=======Dados da conta======="+"\n"+
@@ -9,19 +9,12 @@ abstract class Conta {
                              "Saldo atual: "+saldo);
     }
 
-    public void saque(double value){
-        if (value > saldo){
-            System.out.println("Saldo Insuficiente");
-        }else{
-            saldo -= value;
-        }
-    }
+    public abstract void saque(double value);
 
-    public void deposito(){
-    }
+    public abstract void deposito(double value);
 
 
-    public int getNumConta() {
+    public String getNumConta() {
         return numConta;
     }
 
@@ -29,7 +22,7 @@ abstract class Conta {
         return saldo;
     }
 
-    public double getCredito() {
-        return Credito;
+    public String getNumCartao() {
+        return numCartao;
     }
 }
