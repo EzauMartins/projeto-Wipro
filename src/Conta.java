@@ -1,7 +1,7 @@
 abstract class Conta {
     String numConta;
     double saldo;
-    String credito;
+    String numCartao;
 
     public void infConta(){
         System.out.println("=======Dados da conta======="+"\n"+
@@ -29,7 +29,7 @@ abstract class Conta {
         return saldo;
     }
 
-    public String getCredito() {
-        return credito;
+    public String getNumCartao() {
+        return numCartao;
     }
 }
