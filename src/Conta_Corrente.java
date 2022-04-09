@@ -13,7 +13,7 @@ public class Conta_Corrente extends Conta {
 		            System.out.println("Saldo Insuficiente");
 		        }else{
 		        	double tax = 7.0;
-		            saldo -= value - tax;
+		            saldo -= value + tax;
 		        }
 		
 	}
