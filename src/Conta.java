@@ -9,16 +9,9 @@ abstract class Conta {
                              "Saldo atual: "+saldo);
     }
 
-    public void saque(double value){
-        if (value > saldo){
-            System.out.println("Saldo Insuficiente");
-        }else{
-            saldo -= value;
-        }
-    }
+    public abstract void saque(double value);
 
-    public void deposito(){
-    }
+    public abstract void deposito(double value);
 
 
     public String getNumConta() {
