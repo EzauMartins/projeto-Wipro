@@ -75,4 +75,10 @@ Time responsável pelo desenvolvimento do projeto
  <img src="https://logosmarcas.net/wp-content/uploads/2021/03/Trello-Logo-2021-presente.jpg" height="25"/>
  </p>   
     
+    
+ # Licença 
+
+The [PEDREIROS License]() (WIPRO)
+
+Copyright :copyright: 2022 - TROPA DE PEDREIROS  
 
