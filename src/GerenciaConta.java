@@ -4,16 +4,19 @@ import java.util.List;
 import java.util.Scanner;
 
 		public class GerenciaConta {
+
 			public static void main(String[] args) {
 				int cont;
 
 				Scanner in = new Scanner(System.in);
 
 				List<ContaCorrente> ListCC = new ArrayList<>();
+				List<ContaEspecial> ListCE = new ArrayList<>();
 
 				System.out.println("=====|SISTEMA BANCARIO|=====");
 
 				do {
+					int i = 0;
 					System.out.println("0-Encerrar APP \n" +
 							           "1-Criar Conta Corrent | 2- 	Criar ContaEspecial \n" +
 							           "3-Consultar Saldo     | 4-	Sacar \n" +
@@ -26,8 +29,18 @@ import java.util.Scanner;
 						case 1:
 							ListCC.add(criarContaCorrent());
 							break;
+						case 2:
+							ListCE.add(criarContaEspecial());
+						case 3:
+							System.out.println("Index da conta a ser consultada:");
+							i = in.nextInt();
+							Consultarsaldo(ListCC,ListCE,i);
+						case 4:
+
 						case 5:
-							BuscarConta(ListCC);
+							System.out.println("Index da conta a ser consultada:");
+							i = in.nextInt();
+							BuscarConta(ListCC,i);
 							break;
 						case 6:
 							ListarContas(ListCC);
@@ -55,10 +68,38 @@ import java.util.Scanner;
 				return CC;
 			}
 
+			public static ContaEspecial criarContaEspecial() {
 
-			public static void BuscarConta(List<ContaCorrente> listCC){
-				System.out.println("Conta encontrada - Numero CC :"+listCC.get(0).getNumConta());
+				Scanner in = new Scanner(System.in);
+				System.out.println("Digitar : NUMERO CONTA");
+				String inCC = in.next();
+				System.out.println("Digitar : SALDO INICIAL");
+				double inSaldo = in.nextDouble();
+				System.out.println("Digitar : LIMITE INICIAL");
+				double inLimite = in.nextDouble();
 
+				ContaEspecial CE = new ContaEspecial(inCC, inSaldo, inLimite);
+				return CE;
+			}
+
+
+			public static void Consultarsaldo(List<ContaCorrente> listCC,List<ContaEspecial> listCE, int i){
+				Scanner in = new Scanner(System.in);
+				System.out.println("=Tipo da conta= \n"+
+								"[1]Corrente - [2]Especial");
+				int tipo = in.nextInt();
+				switch (tipo){
+					case 1:
+						System.out.println("Saldo Conta Corrente :"+listCC.get(i).getSaldo());
+					case 2:
+						System.out.println("Saldo Conta Especial :"+listCE.get(i).getSaldo());
+
+				}
+
+			}
+
+			public static void BuscarConta(List<ContaCorrente> listCC, int i){
+				System.out.println("Conta encontrada - Numero CC :"+listCC.get(i).getNumConta());
 
 			}
 
