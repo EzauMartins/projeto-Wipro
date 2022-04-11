@@ -5,22 +5,39 @@ import java.util.Scanner;
 
 		public class GerenciaConta {
 			public static void main(String[] args) {
-
-				int resp;
+				int cont;
 
 				Scanner in = new Scanner(System.in);
+
 				List<ContaCorrente> ListCC = new ArrayList<>();
 
 				System.out.println("=====|SISTEMA BANCARIO|=====");
+
 				do {
-					ListCC.add(criarContaCorrent());
+					System.out.println("0-Encerrar APP \n" +
+							           "1-Criar Conta Corrent | 2- 	Criar ContaEspecial \n" +
+							           "3-Consultar Saldo     | 4-	Sacar \n" +
+							           "5-Buscar Conta |  6- Todas as contas" );
 
-					System.out.println("Deseja continuar adicionando");
-					resp = in.nextInt();
+					int resp = in.nextInt();
+					cont = resp;
 
-				}while (resp == 1);
+					switch (resp){
+						case 1:
+							ListCC.add(criarContaCorrent());
+							break;
+						case 5:
+							BuscarConta(ListCC);
+							break;
+						case 6:
+							ListarContas(ListCC);
+						default:
+							System.out.println("valor invalido");;
+					}
 
-				System.out.println(ListCC.get(1).getNumConta());
+				}while (!(cont == 0));
+
+				System.out.println("Sistema Encerrado");
 
 			}
 
@@ -37,5 +54,20 @@ import java.util.Scanner;
 				ContaCorrente CC = new ContaCorrente(inCC, inSaldo,inCredito);
 				return CC;
 			}
+
+
+			public static void BuscarConta(List<ContaCorrente> listCC){
+				System.out.println("Conta encontrada - Numero CC :"+listCC.get(0).getNumConta());
+
+
+			}
+
+			public static void ListarContas(List<ContaCorrente> listCC){
+				for(int i = 0; i < listCC.size(); i++){
+					listCC.get(i).dadosConta();
+					System.out.println("==============================\n");
+				}
+			}
+
 
 		}
