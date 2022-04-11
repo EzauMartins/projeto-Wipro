@@ -3,11 +3,8 @@ abstract class Conta {
     double saldo;
     String numCartao;
 
-    public void infConta(){
-        System.out.println("=======Dados da conta======="+"\n"+
-                            "Numero Conta: "+numConta+"\n"+
-                             "Saldo atual: "+saldo);
-    }
+
+    public abstract void dadosConta();
 
     public abstract void saque(double value);
 
