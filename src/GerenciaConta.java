@@ -77,8 +77,10 @@ import java.util.Scanner;
 				double inSaldo = in.nextDouble();
 				System.out.println("Digitar : LIMITE INICIAL");
 				double inLimite = in.nextDouble();
+				System.out.println("Digitar : NUMERO CARTÃO");
+				String inNumCartão = in.next();
 
-				ContaEspecial CE = new ContaEspecial(inCC, inSaldo, inLimite);
+				ContaEspecial CE = new ContaEspecial(inCC, inSaldo, inLimite ,inNumCartão);
 				return CE;
 			}
 

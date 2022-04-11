@@ -12,6 +12,13 @@ public class ContaEspecial extends Conta{
 	}
 
 	@Override
+	public void dadosConta() {
+		System.out.println("=======Dados da conta======="+"\n"+
+				"Numero Conta: "+numConta+"\n"+
+				"Saldo atual: "+saldo);
+	}
+
+	@Override
 	public void saque(double value) {
 		if (value > (saldo + limiteAdicional)) {
 			System.out.println("Saldo insuficiente");

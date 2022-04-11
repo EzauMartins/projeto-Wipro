@@ -1,7 +1,7 @@
 	
-public class Conta_Corrente extends Conta {
+public class ContaCorrente extends Conta {
 
-	public Conta_Corrente(String numConta, double saldo,String numCartao) {
+	public ContaCorrente(String numConta, double saldo,String numCartao) {
 	this.numConta = numConta;
 	this.saldo = saldo;
 	this.numCartao = numCartao;
@@ -13,7 +13,6 @@ public class Conta_Corrente extends Conta {
 		System.out.println("=======Dados da conta======="+"\n"+
 				"Numero Conta: "+numConta+"\n"+
 				"Saldo atual: "+saldo);
-
 
 	}
 
