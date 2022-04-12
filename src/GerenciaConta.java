@@ -13,7 +13,18 @@ import java.util.Scanner;
 
 				System.out.println("=====|SISTEMA BANCARIO|=====");
 				do {
+<<<<<<< Updated upstream
 					ListCC.add(criarContaCorrent());
+=======
+					int i = 0;
+					System.out.println("0-Encerrar APP \n" +
+							           "1-Criar Conta Corrente | 2- Criar ContaEspecial \n" +
+							           "3-Consultar Saldo     | 4-Sacar \n" +
+							           "5-Buscar Conta |  6- Todas as contas" );
+
+					int resp = in.nextInt();
+					cont = resp;
+>>>>>>> Stashed changes
 
 					System.out.println("Deseja continuar adicionando");
 					resp = in.nextInt();
