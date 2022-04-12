@@ -33,4 +33,7 @@ public class ContaEspecial extends Conta{
 		saldo += value;
 	}
 
+	public double getLimiteAdicional() {
+		return limiteAdicional;
+	}
 }

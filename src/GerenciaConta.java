@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -26,24 +25,28 @@ import java.util.Scanner;
 					cont = resp;
 
 					switch (resp){
+						case 0:
+							break;
 						case 1:
 							ListCC.add(criarContaCorrent());
 							break;
 						case 2:
 							ListCE.add(criarContaEspecial());
+							break;
 						case 3:
 							System.out.println("Index da conta a ser consultada:");
 							i = in.nextInt();
 							Consultarsaldo(ListCC,ListCE,i);
+							break;
 						case 4:
-
+							Saque(ListCC,ListCE);
+							break;
 						case 5:
-							System.out.println("Index da conta a ser consultada:");
-							i = in.nextInt();
-							BuscarConta(ListCC,i);
+							BuscarConta(ListCC,ListCE);
 							break;
 						case 6:
-							ListarContas(ListCC);
+							ListarContas(ListCC,ListCE);
+							break;
 						default:
 							System.out.println("valor invalido");;
 					}
@@ -93,24 +96,76 @@ import java.util.Scanner;
 				switch (tipo){
 					case 1:
 						System.out.println("Saldo Conta Corrente :"+listCC.get(i).getSaldo());
+						break;
 					case 2:
 						System.out.println("Saldo Conta Especial :"+listCE.get(i).getSaldo());
+						break;
+				}
+			}
 
+			public static void Saque(List<ContaCorrente> listCC,List<ContaEspecial> listCE){
+				Scanner in = new Scanner(System.in);
+				System.out.println("============================");
+				System.out.println("Informe index da conta");
+				int index = in.nextInt();
+				System.out.println("Valor do saque:");
+				double value = in.nextDouble();
+				System.out.println("=Tipo da conta= \n"+
+						"[1]Corrente - [2]Especial");
+				int tipo = in.nextInt();
+				switch (tipo){
+					case 1:
+						listCC.get(index).saque(value);
+						break;
+					case 2:
+						listCE.get(index).saque(value);
+						break;
 				}
 
 			}
 
-			public static void BuscarConta(List<ContaCorrente> listCC, int i){
-				System.out.println("Conta encontrada - Numero CC :"+listCC.get(i).getNumConta());
+			public static void BuscarConta(List<ContaCorrente> listCC,List<ContaEspecial> listCE){
+
+				Scanner in = new Scanner(System.in);
+				System.out.println("============================");
+				System.out.println("=Tipo da conta= \n"+
+						"[1]Corrente - [2]Especial");
+				int tipo = in.nextInt();
+				System.out.println("Informe index da conta");
+				int index = in.nextInt();
+				System.out.println("================================");
+				switch (tipo){
+					case 1:
+						System.out.println("Conta encontrada - Numero CC :"+listCC.get(index).getNumConta()+"\n"+
+								"Saldo"+listCC.get(index).getSaldo()+"\n"+
+								"Cartão"+listCC.get(index).getNumCartao());
+						break;
+					case 2:
+						System.out.println("Conta encontrada - Numero CE :"+listCE.get(index).getNumConta()+"\n"+
+								"Saldo"+listCE.get(index).getSaldo()+"\n"+
+								"Cartão"+listCE.get(index).getNumCartao()+"\n"+
+								"Limite Adicional"+listCE.get(index).getLimiteAdicional());
+						break;
+					default:
+						System.out.println("Conta inexistente");
+				}
+				System.out.println("================================");
 
 			}
-
-			public static void ListarContas(List<ContaCorrente> listCC){
+			public static void ListarContas(List<ContaCorrente> listCC,List<ContaEspecial> listCE){
+				System.out.println("======CONTA CORRENTE======");
 				for(int i = 0; i < listCC.size(); i++){
 					listCC.get(i).dadosConta();
 					System.out.println("==============================\n");
 				}
+
+				System.out.println("======CONTA ESPECIAL======");
+				for(int i = 0; i < listCE.size(); i++){
+					listCC.get(i).dadosConta();
+					System.out.println("==============================\n");
+				}
 			}
+
 
 
 		}
