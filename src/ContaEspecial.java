@@ -1,4 +1,3 @@
-
 public class ContaEspecial extends Conta{
 
 	double limiteAdicional;
@@ -9,6 +8,7 @@ public class ContaEspecial extends Conta{
 		this.saldo = saldo;
 		this.limiteAdicional = limiteAdicional;
 		this.numCartao = numCartao;
+
 	}
 
 	@Override
@@ -33,4 +33,7 @@ public class ContaEspecial extends Conta{
 		saldo += value;
 	}
 
+	public double getLimiteAdicional() {
+		return limiteAdicional;
+	}
 }
