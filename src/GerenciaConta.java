@@ -17,9 +17,10 @@ import java.util.Scanner;
 				do {
 					int i = 0;
 					System.out.println("0-Encerrar APP \n" +
-							           "1-Criar Conta Corrent | 2- 	Criar ContaEspecial \n" +
+							           "1-Criar Conta Corrente | 2- 	Criar ContaEspecial \n" +
 							           "3-Consultar Saldo     | 4-	Sacar \n" +
-							           "5-Buscar Conta |  6- Todas as contas" );
+							           "5-Buscar Conta |  6- Todas as contas\n"+
+							           "7- Depositar");
 
 					int resp = in.nextInt();
 					cont = resp;
@@ -47,6 +48,8 @@ import java.util.Scanner;
 						case 6:
 							ListarContas(ListCC,ListCE);
 							break;
+						case 7:
+							deposito(ListCE, ListCC);
 						default:
 							System.out.println("valor invalido");;
 					}
@@ -138,12 +141,12 @@ import java.util.Scanner;
 					case 1:
 						System.out.println("Conta encontrada - Numero CC :"+listCC.get(index).getNumConta()+"\n"+
 								"Saldo"+listCC.get(index).getSaldo()+"\n"+
-								"Cart√£o"+listCC.get(index).getNumCartao());
+								"Cart„o"+listCC.get(index).getNumCartao());
 						break;
 					case 2:
 						System.out.println("Conta encontrada - Numero CE :"+listCE.get(index).getNumConta()+"\n"+
 								"Saldo"+listCE.get(index).getSaldo()+"\n"+
-								"Cart√£o"+listCE.get(index).getNumCartao()+"\n"+
+								"Cart„o"+listCE.get(index).getNumCartao()+"\n"+
 								"Limite Adicional"+listCE.get(index).getLimiteAdicional());
 						break;
 					default:
@@ -152,6 +155,7 @@ import java.util.Scanner;
 				System.out.println("================================");
 
 			}
+			
 			public static void ListarContas(List<ContaCorrente> listCC,List<ContaEspecial> listCE){
 				System.out.println("======CONTA CORRENTE======");
 				for(int i = 0; i < listCC.size(); i++){
@@ -166,6 +170,39 @@ import java.util.Scanner;
 				}
 			}
 
+			public static void deposito(List<ContaEspecial> list1,List<ContaCorrente> list2) {
+				
+				Scanner in = new Scanner(System.in);
+				
+				System.out.printf("Em qual tipo de conta deseja depositar?\n"+
+				"1-Conta Corrente\n"+
+				"2-Conta Especial\n");
+				int op = in.nextInt();
+				
+				if(op==1) {
+					System.out.println("Qual Conta deseja depositar?");
+					for(int i=0;i<list2.size();i++) {
+						System.out.println(list2);
+					}
+					System.out.println("Em qual deseja adicionar?");
+					int indexOf = in.nextInt();
+					System.out.println("Qual o valor do deposito?");
+					Double value = in.nextDouble();
+					list2.get(indexOf).deposito(value);
+				}
+				if(op==2) {
+					System.out.println("Qual Conta deseja depositar?");
+					for(int i=0;i<list1.size();i++) {
+						System.out.println(i+ " : " + list1.toString());
+					}
+					System.out.println("Em qual deseja adicionar?");
+					int indexOf = in.nextInt();
+					System.out.println("Qual o valor do deposito?");
+					Double value = in.nextDouble();
+					list1.get(indexOf).deposito(value);
+				}
+				
+			}
 
 
 		}
