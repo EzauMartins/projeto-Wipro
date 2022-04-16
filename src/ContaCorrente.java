@@ -1,7 +1,6 @@
-
 public class ContaCorrente extends Conta {
 
-	public ContaCorrente(String numConta, double saldo, String numCartao) {
+	public ContaCorrente(String numConta, double saldo,String numCartao) {
 	this.numConta = numConta;
 	this.saldo = saldo;
 	this.numCartao = numCartao;
@@ -15,6 +14,7 @@ public class ContaCorrente extends Conta {
 		        	double tax = 7.0;
 		            saldo -= value + tax;
 		        }
+		
 	}
 
 	@Override
@@ -22,4 +22,23 @@ public class ContaCorrente extends Conta {
 		this.saldo =+ value;
 		
 	}
+
+
+	@Override
+	public String toString() {
+		return " numConta: " +
+	numConta + "\n saldo: " +
+	saldo + "\n numCartao: " 
+	+ numCartao ;
+	}
+
+
+	@Override
+	public void dadosConta() {
+		System.out.println("=======Dados da conta======="+"\n"+
+				"Numero Conta: "+numConta+"\n"+
+				"Saldo atual: "+saldo);
+	}
+	
+	
 }
