@@ -10,14 +10,7 @@ public class ContaEspecial extends Conta{
 		this.numCartao = numCartao;
 
 	}
-
-	@Override
-	public void dadosConta() {
-		System.out.println("=======Dados da conta======="+"\n"+
-				"Numero Conta: "+numConta+"\n"+
-				"Saldo atual: "+saldo);
-	}
-
+	
 	@Override
 	public void saque(double value) {
 		if (value > (saldo + limiteAdicional)) {
@@ -35,5 +28,19 @@ public class ContaEspecial extends Conta{
 
 	public double getLimiteAdicional() {
 		return limiteAdicional;
+	}
+	
+	@Override
+	public String toString() {
+		return " numConta: " +
+				numConta + "\n saldo: " +
+				saldo + "\n numCartao: " 
+				+ numCartao ;
+	}
+	@Override
+	public void dadosConta() {
+		System.out.println("=======Dados da conta======="+"\n"+
+				"Numero Conta: "+this.numCartao+"\n"+
+				"Saldo atual: "+this.saldo);
 	}
 }
