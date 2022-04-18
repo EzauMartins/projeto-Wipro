@@ -1,3 +1,5 @@
+package com.wipro.gama.bankapp.model;
+
 public class ContaEspecial extends Conta{
 
 	double limiteAdicional;
