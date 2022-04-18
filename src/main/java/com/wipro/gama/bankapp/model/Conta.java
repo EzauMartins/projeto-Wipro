@@ -1,13 +1,12 @@
+package com.wipro.gama.bankapp.model;
+
 abstract class Conta {
     String numConta;
     double saldo;
     String numCartao;
 
-    public void infConta(){
-        System.out.println("=======Dados da conta======="+"\n"+
-                            "Numero Conta: "+numConta+"\n"+
-                             "Saldo atual: "+saldo);
-    }
+
+    public abstract void dadosConta();
 
     public abstract void saque(double value);
 
