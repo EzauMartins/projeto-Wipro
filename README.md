@@ -57,13 +57,15 @@ Time responsável pelo desenvolvimento do projeto
     
 
 ## Diagrama
+<p align="justify">
+Neste diagrama de classes tivemos como base uma classe Abstrata Conta que servirá como base para as classes ContaCorrente e ContaEspecial. Na classe Conta existem dois métodos abstratos (depósito e saque) que deverão ser implementados nas classes que a estendem obrigatoriamente. Na classe ContaEspecial deve ter um atributo valorLimite que deverá ser testado juntamente com o saldo da conta e no saque poderá ser retirado da conta como um valor a mais.
+</p>
 
-
-![Diagrama](https://user-images.githubusercontent.com/42613597/162584981-8d63a673-30f3-46b7-9412-aad26360b398.png)
+![Class Diagram0](https://user-images.githubusercontent.com/75269330/163676279-1565163f-ad69-4855-acf7-d9790e6afd02.png)
 
 ## Caso-de-uso
 
-![casos de uso](https://user-images.githubusercontent.com/42613597/162586347-c043be7a-89a4-435c-8186-6fd8bdf838e7.png)
+![UseCase Diagram0](https://user-images.githubusercontent.com/75269330/163676272-68ee40f1-2b1c-4c3b-aa03-ea5656832063.png)
 
 
 ## Technologies
