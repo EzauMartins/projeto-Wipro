@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
+
 
 		public class GerenciaConta {
 
@@ -81,13 +83,13 @@ import java.util.Scanner;
 							ListarContas(ListCC, ListCE);
 							break;
 						default:
-							System.out.println("Valor invÃ¡lido");
+							System.out.println("Valor inválido");
 					}
 
 				} while (!(cont == 0));
 
 				System.out.println("====Sistema Encerrado==== \n" +
-						"Copyright Â© 2022 - TROPA DE PEDREIROS");
+						"Copyright © 2022 - TROPA DE PEDREIROS");
 
 			}
 
@@ -95,7 +97,8 @@ import java.util.Scanner;
 
 				Scanner in = new Scanner(System.in);
 				boolean check = true;
-				String inCC;
+				Random aleatorio = new Random();
+								String inCC;
 
 				do {
 					System.out.println("Digitar  NUMERO CONTA");
@@ -104,7 +107,7 @@ import java.util.Scanner;
 					for (int i = 0; i < listCC.size(); i++) {
 						if (listCC.get(i).getNumConta().equals(inCC)) {
 							System.out.println("===================!!\n" +
-									"Conta jÃ¡ existente \n" +
+									"Conta já existente \n" +
 									"Digite novamente\n" +
 									"===================!!");
 							check = false;
@@ -136,7 +139,7 @@ import java.util.Scanner;
 					for (int i = 0; i < listCE.size(); i++) {
 						if (listCE.get(i).getNumConta().equals(inCE)) {
 							System.out.println("===================!!\n" +
-									"Conta jÃ¡ existente \n" +
+									"Conta já existente \n" +
 									"Digite novamente\n" +
 									"===================!!");
 							check = false;
@@ -149,10 +152,10 @@ import java.util.Scanner;
 				double inSaldo = in.nextDouble();
 				System.out.println("Digitar : LIMITE INICIAL");
 				double inLimite = in.nextDouble();
-				System.out.println("Digitar : NUMERO CARTÃƒO");
-				String inNumCartÃ£o = in.next();
+				System.out.println("Digitar : NUMERO CARTÃO");
+				String inNumCartão = in.next();
 
-				ContaEspecial CE = new ContaEspecial(inCE, inSaldo, inLimite, inNumCartÃ£o);
+				ContaEspecial CE = new ContaEspecial(inCE, inSaldo, inLimite, inNumCartão);
 				return CE;
 			}
 
@@ -191,12 +194,12 @@ import java.util.Scanner;
 					case 1:
 						System.out.println("Conta encontrada - Numero CC :" + listCC.get(index).getNumConta() + "\n" +
 								"Saldo" + listCC.get(index).getSaldo() + "\n" +
-								"CartÃ£o" + listCC.get(index).getNumCartao());
+								"Cartão" + listCC.get(index).getNumCartao());
 						break;
 					case 2:
 						System.out.println("Conta encontrada - Numero CE :" + listCE.get(index).getNumConta() + "\n" +
 								"Saldo" + listCE.get(index).getSaldo() + "\n" +
-								"CartÃ£o" + listCE.get(index).getNumCartao() + "\n" +
+								"Cartão" + listCE.get(index).getNumCartao() + "\n" +
 								"Limite Adicional" + listCE.get(index).getLimiteAdicional());
 						break;
 				}
@@ -230,7 +233,7 @@ import java.util.Scanner;
 
 				if (listCC.isEmpty() && listCC.isEmpty()) {
 					System.out.println("================================\n" +
-							"==NÃ£o existe conta cadastrada==\n" +
+							"==Não existe conta cadastrada==\n" +
 							"================================\n");
 				} else {
 
