@@ -1,13 +1,13 @@
-package com.api.bank.bank;
+package com.wipro.gama.bankapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BankApplication {
+public class BankappApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BankApplication.class, args);
+		SpringApplication.run(BankappApplication.class, args);
 	}
 
 }
