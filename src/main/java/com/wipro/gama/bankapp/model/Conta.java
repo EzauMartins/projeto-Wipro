@@ -1,3 +1,5 @@
+package com.wipro.gama.bankapp.model;
+
 abstract class Conta {
     String numConta;
     double saldo;
