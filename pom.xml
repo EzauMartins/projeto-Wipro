@@ -8,11 +8,11 @@
 		<version>2.6.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.api.bank</groupId>
-	<artifactId>bank</artifactId>
+	<groupId>com.wipro.gama</groupId>
+	<artifactId>bankapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>bank</name>
-	<description>project for bootcamp gama/wipro </description>
+	<name>bankapp</name>
+	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

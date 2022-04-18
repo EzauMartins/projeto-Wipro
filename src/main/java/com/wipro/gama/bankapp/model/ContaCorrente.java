@@ -1,3 +1,5 @@
+package com.wipro.gama.bankapp.model;
+
 public class ContaCorrente extends Conta {
 
 	public ContaCorrente(String numConta, double saldo,String numCartao) {

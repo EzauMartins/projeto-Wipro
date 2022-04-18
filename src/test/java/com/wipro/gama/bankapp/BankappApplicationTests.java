@@ -1,10 +1,10 @@
-package com.api.bank.bank;
+package com.wipro.gama.bankapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BankApplicationTests {
+class BankappApplicationTests {
 
 	@Test
 	void contextLoads() {
