@@ -1,30 +1,42 @@
 package com.wipro.gama.bankapp.model;
 
-import java.util.Date;
+import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
 @Entity
-public class Cliente {
-
+public class Cliente implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3144270426459686871L;
+	
 	@Id
-	private Long id;
+	//IDENTITY GERA ID AUTOMATICO NO BANCO
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	private String cpf;
 	private String endereco;
+	@Column(name ="nome completo")
 	private String nome;
 	private String telefone;
 	private String email;
-	private Date data_nascimento;
+	
+	private String data_nascimento;
 
 	public Cliente() {
 		super();
 	}
 
-	public Cliente(Long id, String cpf, String endereco, String nome, String telefone, String email,
-			Date data_nascimento) {
+	public Cliente(int id, String cpf, String endereco, String nome, String telefone, String email,
+			String data_nascimento) {
 		super();
 		this.id = id;
 		this.cpf = cpf;
@@ -35,11 +47,11 @@ public class Cliente {
 		this.data_nascimento = data_nascimento;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -83,11 +95,11 @@ public class Cliente {
 		this.email = email;
 	}
 
-	public Date getData_nascimento() {
+	public String getData_nascimento() {
 		return data_nascimento;
 	}
 
-	public void setData_nascimento(Date data_nascimento) {
+	public void setData_nascimento(String data_nascimento) {
 		this.data_nascimento = data_nascimento;
 	}
 
