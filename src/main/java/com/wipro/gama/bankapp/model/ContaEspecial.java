@@ -1,13 +1,18 @@
 package com.wipro.gama.bankapp.model;
 
+//import javax.persistence.Column;
 import javax.persistence.Entity;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class ContaEspecial extends Conta{
 
 	@Id
+//	@GeneratedValue(strategy = GenerationType.AUTO)
 	int Id;
+//	@Column(nullable = false , unique = false , length = 15)
 	double limiteAdicional;
 	double tax = 5.0;
 
