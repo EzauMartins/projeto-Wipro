@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class Cliente {
 
 	@Id
-	private Long id;
+	private Integer id;
 	private String cpf;
 	private String endereco;
 	private String nome;
@@ -23,7 +23,7 @@ public class Cliente {
 		super();
 	}
 
-	public Cliente(Long id, String cpf, String endereco, String nome, String telefone, String email,
+	public Cliente(Integer id, String cpf, String endereco, String nome, String telefone, String email,
 			Date data_nascimento) {
 		super();
 		this.id = id;
@@ -35,11 +35,11 @@ public class Cliente {
 		this.data_nascimento = data_nascimento;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
