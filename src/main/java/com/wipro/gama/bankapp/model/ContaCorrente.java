@@ -1,6 +1,18 @@
+package com.wipro.gama.bankapp.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class ContaCorrente extends Conta {
 
-	public ContaCorrente(String numConta, double saldo,String numCartao) {
+	@Id
+	int id;
+
+	public ContaCorrente() {
+	}
+
+	public ContaCorrente(String numConta, double saldo, String numCartao) {
 	this.numConta = numConta;
 	this.saldo = saldo;
 	this.numCartao = numCartao;
@@ -39,6 +51,8 @@ public class ContaCorrente extends Conta {
 				"Numero Conta: "+numConta+"\n"+
 				"Saldo atual: "+saldo);
 	}
+
+
 	
 	
 }
