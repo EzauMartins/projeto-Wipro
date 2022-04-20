@@ -13,13 +13,8 @@ public class ContaCorrente extends Conta {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
 
-	/*@ManyToOne
-	@JoinColumn(name = "cliente_id")
-	Cliente cliente;
-
-	public Cliente getCliente() {
-		return cliente;
-	}*/
+	@OneToOne(cascade = CascadeType.ALL,mappedBy = "CC")
+	private Cliente cliente;
 
 	public ContaCorrente() {
 	}
@@ -38,7 +33,6 @@ public class ContaCorrente extends Conta {
 		        	double tax = 7.0;
 		            saldo -= value + tax;
 		        }
-		
 	}
 
 	@Override
@@ -46,9 +40,6 @@ public class ContaCorrente extends Conta {
 		this.saldo =+ value;
 		
 	}
-
-
-
 
 	@Override
 	public String toString() {
@@ -58,7 +49,6 @@ public class ContaCorrente extends Conta {
 	+ numCartao ;
 	}
 
-
 	@Override
 	public void dadosConta() {
 		System.out.println("=======Dados da conta======="+"\n"+
@@ -67,6 +57,19 @@ public class ContaCorrente extends Conta {
 	}
 
 
-	
-	
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }
