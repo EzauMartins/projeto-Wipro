@@ -1,117 +1,153 @@
 package com.wipro.gama.bankapp.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 
 @Entity
+@Table(name = "tblCliente")
 public class Cliente {
 
-	@Id
-	private Integer id;
-	private String cpf;
-	private String endereco;
-	private String nome;
-	private String telefone;
-	private String email;
-	private Date data_nascimento;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
-	public Cliente() {
-		super();
-	}
+    @Column (nullable = false , length = 100)
+    private String nome;
 
-	public Cliente(Integer id, String cpf, String endereco, String nome, String telefone, String email,
-			Date data_nascimento) {
-		super();
-		this.id = id;
-		this.cpf = cpf;
-		this.endereco = endereco;
-		this.nome = nome;
-		this.telefone = telefone;
-		this.email = email;
-		this.data_nascimento = data_nascimento;
-	}
+    @Size(min = 11,max = 11)
+    @Column(nullable = false, length = 11, unique = true)
+    private String cpf;
 
-	public Integer getId() {
-		return id;
-	}
+    @Column (nullable = false, length = 50)
+    private String endereco;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Column (nullable = false , length = 12)
+    private String telefone;
 
-	public String getCpf() {
-		return cpf;
-	}
+    @Column (nullable = false , length = 50)
+    private String email;
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+    @Column (nullable = false)
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Date data_nascimento;
 
-	public String getEndereco() {
-		return endereco;
-	}
+    @OneToMany(
+            cascade = CascadeType.ALL
+    )
+    private List<ContaCorrente> CC = new ArrayList<>();
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
+    public List<ContaCorrente> getCC() {
+        return CC;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    /* @OneToMany(
+                cascade = CascadeType.ALL
+        )
+        //@JoinColumn(name="contaEspecialId")
+        private List<ContaEspecial> CE = new ArrayList<>();
+    */
+    //==============================================
+    public Cliente() {
+        super();
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public Cliente(Integer id, String cpf, String endereco, String nome, String telefone, String email,
+                     Date data_nascimento) {
+        super();
+        this.id = id;
+        this.cpf = cpf;
+        this.endereco = endereco;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+        this.data_nascimento = data_nascimento;
+    }
 
-	public String getTelefone() {
-		return telefone;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getCpf() {
+        return cpf;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
-	public Date getData_nascimento() {
-		return data_nascimento;
-	}
+    public String getEndereco() {
+        return endereco;
+    }
 
-	public void setData_nascimento(Date data_nascimento) {
-		this.data_nascimento = data_nascimento;
-	}
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Cliente other = (Cliente) obj;
-		return Objects.equals(id, other.id);
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	@Override
-	public String toString() {
-		return "Cliente [id=" + id + ", cpf=" + cpf + ", endereco=" + endereco + ", nome=" + nome + ", telefone="
-				+ telefone + ", email=" + email + ", data_nascimento=" + data_nascimento + "]";
-	}
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getData_nascimento() {
+        return data_nascimento;
+    }
+
+    public void setData_nascimento(Date data_nascimento) {
+        this.data_nascimento = data_nascimento;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Cliente other = (Cliente) obj;
+        return Objects.equals(id, other.id);
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente [id=" + id + ", cpf=" + cpf + ", endereco=" + endereco + ", nome=" + nome + ", telefone="
+                + telefone + ", email=" + email + ", data_nascimento=" + data_nascimento + "]";
+    }
 
 }
