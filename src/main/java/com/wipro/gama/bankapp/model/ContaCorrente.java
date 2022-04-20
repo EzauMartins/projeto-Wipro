@@ -1,13 +1,25 @@
 package com.wipro.gama.bankapp.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.annotations.Cascade;
+
+import javax.naming.Name;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "tblContaCorrente")
 public class ContaCorrente extends Conta {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
+
+	/*@ManyToOne
+	@JoinColumn(name = "cliente_id")
+	Cliente cliente;
+
+	public Cliente getCliente() {
+		return cliente;
+	}*/
 
 	public ContaCorrente() {
 	}
@@ -34,6 +46,8 @@ public class ContaCorrente extends Conta {
 		this.saldo =+ value;
 		
 	}
+
+
 
 
 	@Override

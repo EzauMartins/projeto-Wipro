@@ -14,46 +14,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wipro.gama.bankapp.model.ContaCorrente;
-import com.wipro.gama.bankapp.service.ContaCorrenteService;
+import com.wipro.gama.bankapp.model.Cliente;
+import com.wipro.gama.bankapp.service.ClienteService;
 
 @RestController
-@RequestMapping("/ContaCorrente")
-public class ContaCorrenteController {
+@RequestMapping("/Cliente")
+public class ClienteController {
 
     @Autowired
-    private ContaCorrenteService service;
+    private ClienteService service;
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<ContaCorrente> GetById(@PathVariable Integer id) {
+    public ResponseEntity<Cliente> GetById(@PathVariable Integer id) {
 
-        ContaCorrente CC = this.service.findById(id);
+        Cliente CC = this.service.findById(id);
         return ResponseEntity.ok().body(CC);
     }
 
     @GetMapping
-    public ResponseEntity<List<ContaCorrente>> GetAll() {
-        List<ContaCorrente> listCC = service.findAll();
-        return ResponseEntity.ok().body(listCC);
+    public ResponseEntity<List<Cliente>> GetAll() {
+        List<Cliente> listCliente = service.findAll();
+        return ResponseEntity.ok().body(listCliente);
     }
 
     @PostMapping
-    public ResponseEntity<ContaCorrente> Post(@RequestBody ContaCorrente CC) {
+    public ResponseEntity<Cliente> Post(@RequestBody Cliente CC) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(CC));
     }
     //FAZER UPDATE
+    
     @PutMapping("/{id}")
-    public ResponseEntity<ContaCorrente> Put(@PathVariable Integer id, @RequestBody ContaCorrente obj) {
-        ContaCorrente newUsuario = service.update(id, obj);
+    public ResponseEntity<Cliente> Put(@PathVariable Integer id, @RequestBody Cliente obj) {
+        Cliente newUsuario = service.update(id, obj);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(newUsuario);
     }
-    
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> Delete(@PathVariable Integer id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 
 }

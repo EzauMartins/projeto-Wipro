@@ -1,11 +1,13 @@
 package com.wipro.gama.bankapp.service;
 
-import com.wipro.gama.bankapp.model.ContaCorrente;
-import com.wipro.gama.bankapp.repository.ContaCorrenteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.wipro.gama.bankapp.model.ContaCorrente;
+import com.wipro.gama.bankapp.repository.ContaCorrenteRepository;
 
 @Service
 public class ContaCorrenteService {
@@ -31,5 +33,12 @@ public class ContaCorrenteService {
     public void delete(Integer id) {
         repository.deleteById(id);
     }
-}
+
+	public ContaCorrente update(Integer id, ContaCorrente obj) {
+		ContaCorrente newObj = findById(id);
+      //newObj.setTax(obj.getClass());
+        return repository.save(newObj);
+	}
+	
+	}
 
