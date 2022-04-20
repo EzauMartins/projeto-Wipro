@@ -1,18 +1,25 @@
 package com.wipro.gama.bankapp.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
-import javax.persistence.*;
-import javax.validation.constraints.Size;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 @Entity
 @Table(name = "tblCliente")
-public class Cliente implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,38 +42,31 @@ public class Cliente implements Serializable {
     private String email;
 
     @Column (nullable = false)
-    @JsonFormat(pattern="dd-MM-yyyy")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date data_nascimento;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name ="tblCliente_cc",
-            joinColumns = {@JoinColumn(name = "cliente_id" )},
-            inverseJoinColumns = {@JoinColumn(name = "cc_id")})
-    private ContaCorrente CC;
+    @OneToMany(
+            cascade = CascadeType.ALL
+    )
+    private List<ContaCorrente> CC = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name ="tblCliente_ce",
-            joinColumns = {@JoinColumn(name = "cliente_id" )},
-            inverseJoinColumns = {@JoinColumn(name = "ce_id")})
-    private ContaEspecial CE;
-
-    public Cliente(){
+    public List<ContaCorrente> getCC() {
+        return CC;
     }
 
-    public Cliente(Integer id, String nome, String cpf, String endereco, String telefone, String email, Date data_nascimento, ContaCorrente CC, ContaEspecial CE) {
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.endereco = endereco;
-        this.telefone = telefone;
-        this.email = email;
-        this.data_nascimento = data_nascimento;
-        this.CC = CC;
-        this.CE = CE;
+    /* @OneToMany(
+                cascade = CascadeType.ALL
+        )
+        //@JoinColumn(name="contaEspecialId")
+        private List<ContaEspecial> CE = new ArrayList<>();
+    */
+    //==============================================
+    public Cliente() {
+        super();
     }
 
-    /*public Cliente(Integer id, String cpf, String endereco, String nome, String telefone, String email,
-                   Date data_nascimento) {
+    public Cliente(Integer id, String cpf, String endereco, String nome, String telefone, String email,
+                     Date data_nascimento) {
         super();
         this.id = id;
         this.cpf = cpf;
@@ -75,25 +75,6 @@ public class Cliente implements Serializable {
         this.telefone = telefone;
         this.email = email;
         this.data_nascimento = data_nascimento;
-    }*/
-
-
-    // ====== GET/SET ======
-
-    public ContaCorrente getCC() {
-        return CC;
-    }
-
-    public void setCC(ContaCorrente CC) {
-        this.CC = CC;
-    }
-
-    public ContaEspecial getCE() {
-        return CE;
-    }
-
-    public void setCE(ContaEspecial CE) {
-        this.CE = CE;
     }
 
     public Integer getId() {
