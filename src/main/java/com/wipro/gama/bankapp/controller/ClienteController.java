@@ -1,13 +1,21 @@
 package com.wipro.gama.bankapp.controller;
 
-import com.wipro.gama.bankapp.model.Cliente;
-import com.wipro.gama.bankapp.service.ClienteService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.wipro.gama.bankapp.model.Cliente;
+import com.wipro.gama.bankapp.service.ClienteService;
 
 @RestController
 @RequestMapping("/Cliente")
@@ -35,12 +43,17 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(CC));
     }
     //FAZER UPDATE
+    
+    @PutMapping("/{id}")
+    public ResponseEntity<Cliente> Put(@PathVariable Integer id, @RequestBody Cliente obj) {
+        Cliente newUsuario = service.update(id, obj);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(newUsuario);
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> Delete(@PathVariable Integer id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 
 }

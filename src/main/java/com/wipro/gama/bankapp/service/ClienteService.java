@@ -34,4 +34,10 @@ public class ClienteService {
         repository.deleteById(id);
     }
 
+	public Cliente update(Integer id, Cliente obj) {
+		Cliente newObj = findById(id);
+	      //newObj.setTax(obj.getClass());
+	        return repository.save(newObj);
+	}
+
 }

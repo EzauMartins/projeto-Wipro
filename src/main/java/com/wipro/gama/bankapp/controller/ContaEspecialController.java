@@ -55,8 +55,5 @@ public class ContaEspecialController {
 	        service.delete(id);
 	        return ResponseEntity.noContent().build();
 	    }
-
-	
-	
 	
 }
