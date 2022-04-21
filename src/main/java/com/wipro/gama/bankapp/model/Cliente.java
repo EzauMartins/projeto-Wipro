@@ -1,12 +1,8 @@
 package com.wipro.gama.bankapp.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
@@ -36,31 +32,26 @@ public class Cliente {
     private String email;
 
     @Column (nullable = false)
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="dd-MM-yyyy")
     private Date data_nascimento;
 
-    @OneToMany(
-            cascade = CascadeType.ALL
-    )
-    private List<ContaCorrente> CC = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name ="tblClinte_cc",
+            joinColumns = {@JoinColumn(name = "cliente_id" )},
+            inverseJoinColumns = {@JoinColumn(name = "cc_id")})
+    private ContaCorrente CC;
 
-    public List<ContaCorrente> getCC() {
-        return CC;
-    }
 
-    /* @OneToMany(
-                cascade = CascadeType.ALL
-        )
-        //@JoinColumn(name="contaEspecialId")
-        private List<ContaEspecial> CE = new ArrayList<>();
-    */
-    //==============================================
-    public Cliente() {
-        super();
-    }
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name ="tblClinte_ce",
+            joinColumns = {@JoinColumn(name = "cliente_id" )},
+            inverseJoinColumns = {@JoinColumn(name = "ce_id")})
+    private ContaEspecial CE;
+
+
 
     public Cliente(Integer id, String cpf, String endereco, String nome, String telefone, String email,
-                     Date data_nascimento) {
+                   Date data_nascimento) {
         super();
         this.id = id;
         this.cpf = cpf;
@@ -69,6 +60,29 @@ public class Cliente {
         this.telefone = telefone;
         this.email = email;
         this.data_nascimento = data_nascimento;
+    }
+
+
+    // ====== GET/SET ======
+
+    public ContaCorrente getCC() {
+        return CC;
+    }
+
+    public void setCC(ContaCorrente CC) {
+        this.CC = CC;
+    }
+
+    public ContaEspecial getCE() {
+        return CE;
+    }
+
+    public void setCE(ContaEspecial CE) {
+        this.CE = CE;
+    }
+
+    public Cliente() {
+        super();
     }
 
     public Integer getId() {

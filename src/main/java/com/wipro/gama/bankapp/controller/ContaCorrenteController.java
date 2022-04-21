@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ContaCorrente")
+@RequestMapping("/ContaCorrete")
 public class ContaCorrenteController {
 
     @Autowired
@@ -40,6 +40,12 @@ public class ContaCorrenteController {
     public ResponseEntity<Void> Delete(@PathVariable Integer id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ContaCorrente> Put(@PathVariable Integer id, @RequestBody ContaCorrente obj) {
+        ContaCorrente cc = service.update(id, obj);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(cc);
     }
 
 

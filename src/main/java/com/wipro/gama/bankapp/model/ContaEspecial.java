@@ -1,20 +1,19 @@
 package com.wipro.gama.bankapp.model;
 
-//import javax.persistence.Column;
-import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "tblContaEspecial")
 public class ContaEspecial extends Conta{
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	int Id;
-//	@Column(nullable = false , unique = false , length = 15)
 	double limiteAdicional;
 	double tax = 5.0;
+
+	@OneToOne(cascade = CascadeType.ALL,mappedBy = "CE")
+	private Cliente cliente;
 
 	public ContaEspecial() {
 	}
@@ -74,5 +73,13 @@ public class ContaEspecial extends Conta{
 
 	public void setTax(double tax) {
 		this.tax = tax;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 }

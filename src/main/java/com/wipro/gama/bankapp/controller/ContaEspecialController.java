@@ -2,6 +2,7 @@ package com.wipro.gama.bankapp.controller;
 
 import java.util.List;
 
+import com.wipro.gama.bankapp.model.ContaCorrente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ import com.wipro.gama.bankapp.service.ContaEspecialService;
 
 @RestController
 @RequestMapping("/contaespecial")
-@CrossOrigin("*")
+
 public class ContaEspecialController {
 	
 	@Autowired
@@ -39,16 +40,17 @@ public class ContaEspecialController {
 	        return ResponseEntity.ok().body(list);
 	    }
 
-	    @PostMapping
-	    public ResponseEntity<ContaEspecial> Post(@RequestBody ContaEspecial ContaEspecial) {
-	        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(ContaEspecial));
-	    }
+		@PostMapping
+		public ResponseEntity<ContaEspecial> Post(@RequestBody ContaEspecial ce) {
+			return ResponseEntity.status(HttpStatus.CREATED).body(service.create(ce));
+		}
 
-	    @PutMapping("/{id}")
-	    public ResponseEntity<ContaEspecial> Put(@PathVariable Integer id, @RequestBody ContaEspecial obj) {
-	        ContaEspecial newUsuario = service.update(id, obj);
-	        return ResponseEntity.status(HttpStatus.ACCEPTED).body(newUsuario);
-	    }
+		@PutMapping("/{id}")
+		public ResponseEntity<ContaEspecial> Put(@PathVariable Integer id, @RequestBody ContaEspecial ce) {
+			ContaEspecial updateCe = service.update(id, ce);
+			return ResponseEntity.status(HttpStatus.ACCEPTED).body(updateCe);
+
+		}
 
 	    @DeleteMapping("/{id}")
 	    public ResponseEntity<Void> Delete(@PathVariable Integer id) {

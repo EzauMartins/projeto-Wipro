@@ -1,5 +1,6 @@
 package com.wipro.gama.bankapp.service;
 
+import com.wipro.gama.bankapp.model.ContaCorrente;
 import com.wipro.gama.bankapp.model.ContaEspecial;
 import com.wipro.gama.bankapp.repository.ContaEspecialRepository;
 
@@ -27,20 +28,14 @@ public class ContaEspecialService {
         return repository.findAll();
     }
 
-    
-    @Id
-	int Id;
-	double limiteAdicional;
-	double tax = 5.0;
-    public ContaEspecial update(Integer id, ContaEspecial obj) {
-        ContaEspecial newObj = findById(id);
-        newObj.setLimiteAdicional(obj.getLimiteAdicional());
-      //newObj.setTax(obj.getClass());
-        return repository.save(newObj);
-    }
-
     public ContaEspecial create(ContaEspecial obj) {
         return repository.save(obj);
+    }
+
+    public ContaEspecial update(Integer id, ContaEspecial ce){
+        ContaEspecial updatece = findById(id);
+        updatece = ce;
+        return repository.save(updatece);
     }
 
     public void delete(Integer id) {
