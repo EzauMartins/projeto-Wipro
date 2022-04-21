@@ -4,6 +4,7 @@ import com.wipro.gama.bankapp.model.ContaCorrente;
 import com.wipro.gama.bankapp.repository.ContaCorrenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +28,12 @@ public class ContaCorrenteService {
     }
 
     //FAZER UPDATE
+    public ContaCorrente update(Integer id, ContaCorrente cc){
+        ContaCorrente updatecc;
+        updatecc = cc;
+        updatecc.setId(id);
+        return repository.save(updatecc);
+    }
 
     public void delete(Integer id) {
         repository.deleteById(id);

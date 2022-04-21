@@ -1,12 +1,8 @@
 package com.wipro.gama.bankapp.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
@@ -36,18 +32,18 @@ public class Cliente {
     private String email;
 
     @Column (nullable = false)
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="dd-MM-yyyy")
     private Date data_nascimento;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name ="clinte_cc",
+    @JoinTable(name ="tblClinte_cc",
             joinColumns = {@JoinColumn(name = "cliente_id" )},
             inverseJoinColumns = {@JoinColumn(name = "cc_id")})
     private ContaCorrente CC;
 
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name ="clinte_ce",
+    @JoinTable(name ="tblClinte_ce",
             joinColumns = {@JoinColumn(name = "cliente_id" )},
             inverseJoinColumns = {@JoinColumn(name = "ce_id")})
     private ContaEspecial CE;

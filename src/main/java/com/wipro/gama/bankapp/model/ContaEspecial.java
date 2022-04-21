@@ -3,6 +3,7 @@ package com.wipro.gama.bankapp.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "tblContaEspecial")
 public class ContaEspecial extends Conta{
 
 	@Id
