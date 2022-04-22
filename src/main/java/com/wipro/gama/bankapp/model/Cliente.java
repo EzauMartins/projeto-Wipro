@@ -41,16 +41,33 @@ public class Cliente {
             inverseJoinColumns = {@JoinColumn(name = "cc_id")})
     private ContaCorrente CC;
 
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinTable(name ="tblClinte_ce",
             joinColumns = {@JoinColumn(name = "cliente_id" )},
             inverseJoinColumns = {@JoinColumn(name = "ce_id")})
     private ContaEspecial CE;
 
+    public Cliente(){
+    }
+
+    public Cliente(Integer id, String nome, String cpf, String endereco, String telefone, String email, Date data_nascimento, ContaCorrente CC, ContaEspecial CE) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.email = email;
+        this.data_nascimento = data_nascimento;
+        this.CC = CC;
+        this.CE = CE;
+    }
 
 
-    public Cliente(Integer id, String cpf, String endereco, String nome, String telefone, String email,
+
+
+
+
+    /*public Cliente(Integer id, String cpf, String endereco, String nome, String telefone, String email,
                    Date data_nascimento) {
         super();
         this.id = id;
@@ -60,7 +77,7 @@ public class Cliente {
         this.telefone = telefone;
         this.email = email;
         this.data_nascimento = data_nascimento;
-    }
+    }*/
 
 
     // ====== GET/SET ======
@@ -79,10 +96,6 @@ public class Cliente {
 
     public void setCE(ContaEspecial CE) {
         this.CE = CE;
-    }
-
-    public Cliente() {
-        super();
     }
 
     public Integer getId() {
