@@ -3,6 +3,7 @@ package com.wipro.gama.bankapp.controller;
 import java.util.List;
 
 import com.wipro.gama.bankapp.model.ContaCorrente;
+import com.wipro.gama.bankapp.model.Valor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +25,8 @@ import com.wipro.gama.bankapp.service.ContaEspecialService;
 
 public class ContaEspecialController {
 	
-	@Autowired
-    private ContaEspecialService service;
+		@Autowired
+		private ContaEspecialService service;
 	
 	 	@GetMapping("/{id}")
 	    public ResponseEntity<ContaEspecial> GetById(@PathVariable Integer id) { 
@@ -57,6 +58,18 @@ public class ContaEspecialController {
 	        service.delete(id);
 	        return ResponseEntity.noContent().build();
 	    }
+
+		@PutMapping("/{id}/deposito")
+		public ResponseEntity<String> deposito(@PathVariable Integer id, @RequestBody Valor valor) {
+			ContaEspecial ce = service.deposito(id,valor);
+			return ResponseEntity.status(HttpStatus.OK).body("Valor depositado, Saldo Atual  ="+ce.getSaldo());
+		}
+
+		@PutMapping("/{id}/saque")
+		public ResponseEntity<String> saque(@PathVariable Integer id, @RequestBody Valor valor) {
+			ContaEspecial ce = service.saque(id,valor);
+			return ResponseEntity.status(HttpStatus.OK).body("Valor debitado, Saldo Atual  ="+ce.getSaldo());
+		}
 
 	
 	
