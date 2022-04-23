@@ -1,5 +1,6 @@
 package com.wipro.gama.bankapp.controller;
 
+import com.wipro.gama.bankapp.model.dto.AddConta;
 import com.wipro.gama.bankapp.model.Cliente;
 import com.wipro.gama.bankapp.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Cliente")
+@RequestMapping("/cliente")
 public class ClienteController {
 
     @Autowired
@@ -34,6 +35,7 @@ public class ClienteController {
     public ResponseEntity<Cliente> Post(@RequestBody Cliente CC) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(CC));
     }
+
     //FAZER UPDATE
 
     @DeleteMapping("/{id}")
@@ -42,5 +44,9 @@ public class ClienteController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/{id}/criarconta")
+    public ResponseEntity<String> AddConta(@PathVariable Integer id, @RequestBody AddConta addconta, @RequestParam String tipo) {
+        return service.addConta(addconta, tipo, id);
+    }
 
 }

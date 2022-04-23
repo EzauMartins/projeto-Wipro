@@ -1,16 +1,17 @@
 package com.wipro.gama.bankapp.service;
 
-import com.wipro.gama.bankapp.model.ContaCorrente;
+import com.wipro.gama.bankapp.model.Cliente;
 import com.wipro.gama.bankapp.model.ContaEspecial;
-import com.wipro.gama.bankapp.model.Valor;
+import com.wipro.gama.bankapp.model.dto.Valor;
+import com.wipro.gama.bankapp.repository.ClienteRepository;
 import com.wipro.gama.bankapp.repository.ContaEspecialRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.Id;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,6 +19,9 @@ public class ContaEspecialService {
 
     @Autowired
     ContaEspecialRepository repository;
+
+    @Autowired
+    ClienteRepository clienteRepository;
     
     
     public ContaEspecial findById(Integer id) {
@@ -54,6 +58,15 @@ public class ContaEspecialService {
         ce.saque(valor.getValue());
         return repository.save(ce);
     }
+
+    public ResponseEntity<String> addConta(ContaEspecial newCE, Integer idCliente){
+        Cliente cliente = clienteRepository.getById(idCliente);
+        cliente.setCE(newCE);
+        clienteRepository.save(cliente);
+        return ResponseEntity.status(HttpStatus.OK).body("Conta especial adicionada para cliente: "+cliente.getNome());
+
+    }
+
 
     
 }

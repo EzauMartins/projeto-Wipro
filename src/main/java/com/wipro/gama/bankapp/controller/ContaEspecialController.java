@@ -2,12 +2,10 @@ package com.wipro.gama.bankapp.controller;
 
 import java.util.List;
 
-import com.wipro.gama.bankapp.model.ContaCorrente;
-import com.wipro.gama.bankapp.model.Valor;
+import com.wipro.gama.bankapp.model.dto.Valor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,9 +39,14 @@ public class ContaEspecialController {
 	        return ResponseEntity.ok().body(list);
 	    }
 
-		@PostMapping
+		/*	@PostMapping
 		public ResponseEntity<ContaEspecial> Post(@RequestBody ContaEspecial ce) {
 			return ResponseEntity.status(HttpStatus.CREATED).body(service.create(ce));
+		}*/
+
+		@PostMapping("/{id}/novaconta")
+		public ResponseEntity<String> addConta(@PathVariable Integer id, @RequestBody ContaEspecial CE) {
+			return service.addConta(CE,id);
 		}
 
 		@PutMapping("/{id}")
@@ -71,7 +74,7 @@ public class ContaEspecialController {
 			return ResponseEntity.status(HttpStatus.OK).body("Valor debitado, Saldo Atual  ="+ce.getSaldo());
 		}
 
-	
+
 	
 	
 }
