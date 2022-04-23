@@ -39,13 +39,13 @@ public class Cliente implements Serializable {
     private Date data_nascimento;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name ="tblClinte_cc",
+    @JoinTable(name ="tblCliente_cc",
             joinColumns = {@JoinColumn(name = "cliente_id" )},
             inverseJoinColumns = {@JoinColumn(name = "cc_id")})
     private ContaCorrente CC;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name ="tblClinte_ce",
+    @JoinTable(name ="tblCliente_ce",
             joinColumns = {@JoinColumn(name = "cliente_id" )},
             inverseJoinColumns = {@JoinColumn(name = "ce_id")})
     private ContaEspecial CE;
