@@ -1,8 +1,11 @@
 package com.wipro.gama.bankapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
+@Table(name = "tblContaEspecial")
 public class ContaEspecial extends Conta{
 
 	@Id
@@ -12,6 +15,7 @@ public class ContaEspecial extends Conta{
 	double tax = 5.0;
 
 	@OneToOne(cascade = CascadeType.ALL,mappedBy = "CE")
+	@JsonIgnore
 	private Cliente cliente;
 
 	public ContaEspecial() {
@@ -30,12 +34,12 @@ public class ContaEspecial extends Conta{
 			System.out.println("Saldo insuficiente");
 		}
 		else {
-			saldo -= value + tax;
+			saldo = saldo - (value + tax);
 		}
 	}
 	@Override
 	public void deposito(double value) {
-		saldo += value;
+		saldo = saldo + value;
 	}
 
 	

@@ -7,7 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wipro.gama.bankapp.model.ContaCorrente;
+import com.wipro.gama.bankapp.model.Valor;
 import com.wipro.gama.bankapp.repository.ContaCorrenteRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ContaCorrenteService {
@@ -28,7 +34,12 @@ public class ContaCorrenteService {
         return repository.save(CC);
     }
 
-    //FAZER UPDATE
+    public ContaCorrente update(Integer id, ContaCorrente cc){
+        ContaCorrente updatecc;
+        updatecc = cc;
+        updatecc.setId(id);
+        return repository.save(updatecc);
+    }
 
     public void delete(Integer id) {
         repository.deleteById(id);
@@ -41,4 +52,16 @@ public class ContaCorrenteService {
 	}
 	
 	}
+
+    public ContaCorrente deposito(Integer id, Valor valor){
+        ContaCorrente cc = findById(id);
+        cc.deposito(valor.getValue());
+        return repository.save(cc);
+    }
+
+    public ContaCorrente saque(Integer id, Valor valor) {
+        ContaCorrente cc = findById(id);
+        cc.saque(valor.getValue());
+        return repository.save(cc);
+    }
 

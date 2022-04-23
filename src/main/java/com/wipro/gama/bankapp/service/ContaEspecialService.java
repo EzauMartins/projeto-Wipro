@@ -1,6 +1,8 @@
 package com.wipro.gama.bankapp.service;
 
+import com.wipro.gama.bankapp.model.ContaCorrente;
 import com.wipro.gama.bankapp.model.ContaEspecial;
+import com.wipro.gama.bankapp.model.Valor;
 import com.wipro.gama.bankapp.repository.ContaEspecialRepository;
 
 import java.util.List;
@@ -26,7 +28,6 @@ public class ContaEspecialService {
     public List<ContaEspecial> findAll() {
         return repository.findAll();
     }
-
     
     @Id
 	int Id;
@@ -40,13 +41,32 @@ public class ContaEspecialService {
         return repository.save(newObj);
     }
 
+
     public ContaEspecial create(ContaEspecial obj) {
         return repository.save(obj);
     }
 
+    public ContaEspecial update(Integer id, ContaEspecial ce){
+        ContaEspecial updatece = findById(id);
+        updatece = ce;
+        return repository.save(updatece);
+    }
     public void delete(Integer id) {
         findById(id);
         repository.deleteById(id);
     }
+
+    public ContaEspecial deposito(Integer id, Valor valor){
+        ContaEspecial ce = findById(id);
+        ce.deposito(valor.getValue());
+        return repository.save(ce);
+    }
+
+    public ContaEspecial saque(Integer id, Valor valor) {
+        ContaEspecial ce = findById(id);
+        ce.saque(valor.getValue());
+        return repository.save(ce);
+    }
+
     
 }

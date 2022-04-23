@@ -2,6 +2,8 @@ package com.wipro.gama.bankapp.controller;
 
 import java.util.List;
 
+import com.wipro.gama.bankapp.model.ContaCorrente;
+import com.wipro.gama.bankapp.model.Valor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +22,11 @@ import com.wipro.gama.bankapp.service.ContaEspecialService;
 
 @RestController
 @RequestMapping("/contaespecial")
-@CrossOrigin("*")
+
 public class ContaEspecialController {
 	
-	@Autowired
-    private ContaEspecialService service;
+		@Autowired
+		private ContaEspecialService service;
 	
 	 	@GetMapping("/{id}")
 	    public ResponseEntity<ContaEspecial> GetById(@PathVariable Integer id) { 
@@ -39,21 +41,35 @@ public class ContaEspecialController {
 	        return ResponseEntity.ok().body(list);
 	    }
 
-	    @PostMapping
-	    public ResponseEntity<ContaEspecial> Post(@RequestBody ContaEspecial ContaEspecial) {
-	        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(ContaEspecial));
-	    }
+		@PostMapping
+		public ResponseEntity<ContaEspecial> Post(@RequestBody ContaEspecial ce) {
+			return ResponseEntity.status(HttpStatus.CREATED).body(service.create(ce));
+		}
 
-	    @PutMapping("/{id}")
-	    public ResponseEntity<ContaEspecial> Put(@PathVariable Integer id, @RequestBody ContaEspecial obj) {
-	        ContaEspecial newUsuario = service.update(id, obj);
-	        return ResponseEntity.status(HttpStatus.ACCEPTED).body(newUsuario);
-	    }
+		@PutMapping("/{id}")
+		public ResponseEntity<ContaEspecial> Put(@PathVariable Integer id, @RequestBody ContaEspecial ce) {
+			ContaEspecial updateCe = service.update(id, ce);
+			return ResponseEntity.status(HttpStatus.ACCEPTED).body(updateCe);
+
+		}
 
 	    @DeleteMapping("/{id}")
 	    public ResponseEntity<Void> Delete(@PathVariable Integer id) {
 	        service.delete(id);
 	        return ResponseEntity.noContent().build();
 	    }
-	
+
+		@PutMapping("/{id}/deposito")
+		public ResponseEntity<String> deposito(@PathVariable Integer id, @RequestBody Valor valor) {
+			ContaEspecial ce = service.deposito(id,valor);
+			return ResponseEntity.status(HttpStatus.OK).body("Valor depositado, Saldo Atual  ="+ce.getSaldo());
+		}
+
+		@PutMapping("/{id}/saque")
+		public ResponseEntity<String> saque(@PathVariable Integer id, @RequestBody Valor valor) {
+			ContaEspecial ce = service.saque(id,valor);
+			return ResponseEntity.status(HttpStatus.OK).body("Valor debitado, Saldo Atual  ="+ce.getSaldo());
+		}
+
+
 }

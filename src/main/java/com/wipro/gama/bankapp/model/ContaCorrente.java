@@ -1,19 +1,23 @@
 package com.wipro.gama.bankapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cascade;
 
 import javax.naming.Name;
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "tblContaCorrente")
-public class ContaCorrente extends Conta {
+public class ContaCorrente extends Conta implements Serializable {
+    private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
 
 	@OneToOne(cascade = CascadeType.ALL,mappedBy = "CC")
+	@JsonIgnore
 	private Cliente cliente;
 
 	public ContaCorrente() {
@@ -31,13 +35,13 @@ public class ContaCorrente extends Conta {
 		            System.out.println("Saldo Insuficiente");
 		        }else{
 		        	double tax = 7.0;
-		            saldo -= value + tax;
+		            saldo = saldo -(value + tax);
 		        }
 	}
 
 	@Override
 	public void deposito(double value) {
-		this.saldo =+ value;
+		saldo = saldo + value;
 		
 	}
 
@@ -56,6 +60,11 @@ public class ContaCorrente extends Conta {
 				"Saldo atual: "+saldo);
 	}
 
+	public void transferencia(ContaCorrente cc, ContaEspecial ce){
+
+	}
+
+	
 
 	public Cliente getCliente() {
 		return cliente;
