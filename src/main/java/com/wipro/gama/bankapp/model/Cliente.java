@@ -1,6 +1,8 @@
 package com.wipro.gama.bankapp.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.*;
@@ -9,7 +11,8 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "tblCliente")
-public class Cliente {
+public class Cliente implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -61,11 +64,6 @@ public class Cliente {
         this.CC = CC;
         this.CE = CE;
     }
-
-
-
-
-
 
     /*public Cliente(Integer id, String cpf, String endereco, String nome, String telefone, String email,
                    Date data_nascimento) {

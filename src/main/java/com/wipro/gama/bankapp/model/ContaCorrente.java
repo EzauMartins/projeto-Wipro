@@ -64,8 +64,6 @@ public class ContaCorrente extends Conta implements Serializable {
 
 	}
 
-	
-
 	public Cliente getCliente() {
 		return cliente;
 	}
