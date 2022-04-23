@@ -3,7 +3,7 @@ package com.wipro.gama.bankapp.controller;
 import java.util.List;
 
 import com.wipro.gama.bankapp.model.ContaCorrente;
-import com.wipro.gama.bankapp.model.Valor;
+import com.wipro.gama.bankapp.model.dto.Valor;
 import com.wipro.gama.bankapp.service.ContaCorrenteService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,16 +42,20 @@ public class ContaCorrenteController {
             return ResponseEntity.ok().body(listCC);
         }
 
-        @PostMapping
-        public ResponseEntity<ContaCorrente> Post(@RequestBody ContaCorrente CC) {
+        /* @PostMapping
+          public ResponseEntity<ContaCorrente> Post(@RequestBody ContaCorrente CC) {
             return ResponseEntity.status(HttpStatus.CREATED).body(service.create(CC));
+         }*/
+
+        @PutMapping("/{id}/novaconta")
+        public ResponseEntity<String> addConta(@PathVariable Integer id, @RequestBody ContaCorrente CC) {
+            return service.addConta(CC,id);
         }
-        //FAZER UPDATE
 
         @DeleteMapping("/{id}")
         public ResponseEntity<Void> Delete(@PathVariable Integer id) {
             service.delete(id);
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.noContent() .build();
         }
 
         @PutMapping("/{id}")
@@ -73,6 +77,8 @@ public class ContaCorrenteController {
         }
 
 	   
+
+
 
 
 
