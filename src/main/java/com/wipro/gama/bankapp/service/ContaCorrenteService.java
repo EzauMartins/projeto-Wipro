@@ -45,13 +45,9 @@ public class ContaCorrenteService {
         repository.deleteById(id);
     }
 
-	public ContaCorrente update(Integer id, ContaCorrente obj) {
-		ContaCorrente newObj = findById(id);
-      //newObj.setTax(obj.getClass());
-        return repository.save(newObj);
-	}
 	
-	}
+	
+	
 
     public ContaCorrente deposito(Integer id, Valor valor){
         ContaCorrente cc = findById(id);
@@ -64,4 +60,4 @@ public class ContaCorrenteService {
         cc.saque(valor.getValue());
         return repository.save(cc);
     }
-
+}

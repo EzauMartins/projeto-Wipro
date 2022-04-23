@@ -46,11 +46,7 @@ public class ContaEspecialService {
         return repository.save(obj);
     }
 
-    public ContaEspecial update(Integer id, ContaEspecial ce){
-        ContaEspecial updatece = findById(id);
-        updatece = ce;
-        return repository.save(updatece);
-    }
+    
     public void delete(Integer id) {
         findById(id);
         repository.deleteById(id);

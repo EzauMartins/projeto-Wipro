@@ -72,22 +72,7 @@ public class ContaCorrenteController {
             return ResponseEntity.status(HttpStatus.OK).body("Valor debitado, Saldo Atual  ="+cc.getSaldo());
         }
 
-    @PostMapping
-    public ResponseEntity<ContaCorrente> Post(@RequestBody ContaCorrente CC) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(CC));
-    }
-    //FAZER UPDATE
-    @PutMapping("/{id}")
-    public ResponseEntity<ContaCorrente> Put(@PathVariable Integer id, @RequestBody ContaCorrente obj) {
-        ContaCorrente newUsuario = service.update(id, obj);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(newUsuario);
-    }
-    
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> Delete(@PathVariable Integer id) {
-        service.delete(id);
-        return ResponseEntity.noContent().build();
-    }
+	   
 
 
 
