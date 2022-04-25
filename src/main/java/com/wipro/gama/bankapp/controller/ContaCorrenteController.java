@@ -36,7 +36,7 @@ public class ContaCorrenteController {
             return ResponseEntity.status(HttpStatus.CREATED).body(service.create(CC));
          }*/
 
-        @PutMapping("/{id}/novaconta")
+        @PostMapping("/{id}/novaconta")
         public ResponseEntity<String> addConta(@PathVariable Integer id, @RequestBody ContaCorrente CC) {
             return service.addConta(CC,id);
         }
