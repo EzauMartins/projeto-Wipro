@@ -33,7 +33,7 @@ public class ContaEspecialService {
         return repository.findAll();
     }
     
-    @Id
+    @javax.persistence.Id
 	int Id;
 	double limiteAdicional;
 	double tax = 5.0;
