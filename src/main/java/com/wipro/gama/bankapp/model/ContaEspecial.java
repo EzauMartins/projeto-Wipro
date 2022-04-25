@@ -34,9 +34,21 @@ public class ContaEspecial extends Conta{
 			System.out.println("Saldo insuficiente");
 		}
 		else {
-			saldo = saldo - (value + tax);
+			double tax = 7.0;
+			saldo = saldo -(value + tax);
 		}
 	}
+
+	public void transferir(double value) {
+		if (value > (saldo + limiteAdicional)) {
+			System.out.println("Saldo insuficiente");
+		}
+		else {
+			saldo = saldo - value;
+		}
+	}
+
+
 	@Override
 	public void deposito(double value) {
 		saldo = saldo + value;
