@@ -2,6 +2,8 @@ package com.wipro.gama.bankapp;
 
 import static org.mockito.ArgumentMatchers.matches;
 
+import java.util.Date;
+
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.junit.Before;
@@ -17,6 +19,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.net.MediaType;
 import com.wipro.gama.bankapp.controller.ClienteController;
 import com.wipro.gama.bankapp.model.Cliente;
+import com.wipro.gama.bankapp.model.ContaCorrente;
+import com.wipro.gama.bankapp.model.ContaEspecial;
 
 public class ClienteResourceTest  extends BankappApplicationTests{
 
@@ -36,8 +40,9 @@ public class ClienteResourceTest  extends BankappApplicationTests{
 	@Test
 	public void criarCliente_RetornarStatusCode201() throws Exception {
 		
-		Cliente cliente = new Cliente(null, null, null, null, null, null, null, null, null);
-		
+		Date data = new Date();
+		Cliente cliente = new Cliente(null,"ezau","02057716770","rua x m x","8888-8888","ezau@98.com", data,null,null);
+
 		
 		//convertendo objeto para json
 		ObjectMapper mapper = new ObjectMapper();
