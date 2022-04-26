@@ -1,5 +1,5 @@
 package com.wipro.gama.bankapp;
 
-public class ContaResouceTest {
+public class ContaResouceTest  extends BankappApplicationTests{
 
 }

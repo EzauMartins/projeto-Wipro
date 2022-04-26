@@ -3,10 +3,6 @@ package com.wipro.gama.bankapp.controller;
 
 import java.util.List;
 
-
-import com.wipro.gama.bankapp.model.dto.AddConta;
-import com.wipro.gama.bankapp.model.Cliente;
-import com.wipro.gama.bankapp.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wipro.gama.bankapp.model.Cliente;
+import com.wipro.gama.bankapp.model.dto.AddConta;
 import com.wipro.gama.bankapp.service.ClienteService;
 
 @RestController

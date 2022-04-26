@@ -1,5 +1,5 @@
 package com.wipro.gama.bankapp;
 
-public class HistoricoResourceTest {
+public class HistoricoResourceTest  extends BankappApplicationTests {
 
 }
