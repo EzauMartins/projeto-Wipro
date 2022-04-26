@@ -54,7 +54,7 @@ public class ClienteService {
                 repository.save(cliente);
                 return ResponseEntity.status(HttpStatus.OK).body("Conta adicionada para cliente: "+cliente.getNome());
             default:
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Link n√£o encontrado");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Link n„o encontrado");
         }
 
     }
