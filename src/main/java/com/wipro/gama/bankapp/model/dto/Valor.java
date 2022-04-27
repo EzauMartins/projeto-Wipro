@@ -1,4 +1,4 @@
-package com.wipro.gama.bankapp.model;
+package com.wipro.gama.bankapp.model.dto;
 
 import java.io.Serializable;
 
