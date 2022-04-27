@@ -2,10 +2,12 @@ package com.wipro.gama.bankapp.model;
 
 
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
 abstract class Conta {
 
+	@NotNull
     String numConta;
     double saldo;
     String numCartao;

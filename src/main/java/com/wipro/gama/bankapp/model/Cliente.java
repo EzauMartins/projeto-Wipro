@@ -1,12 +1,24 @@
 package com.wipro.gama.bankapp.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
-import javax.persistence.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 @Entity
@@ -32,6 +44,7 @@ public class Cliente implements Serializable {
     private String telefone;
 
     @Column (nullable = false , length = 50)
+    @Email
     private String email;
 
     @Column (nullable = false)

@@ -2,8 +2,11 @@ package com.wipro.gama.bankapp.exceptionhandler;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class MessageExceptionHandler {
 	
+	@JsonFormat(pattern="dd-MM-yyyy")
 	private Date data;
 	private int status;
 	private String mensagem;
