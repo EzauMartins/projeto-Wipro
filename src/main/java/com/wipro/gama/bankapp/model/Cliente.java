@@ -33,7 +33,7 @@ public class Cliente implements Serializable {
 
 	@Column (nullable = false , length = 100)
 	@NotNull
-    @NotBlank
+	@NotBlank
     private String nome;
 
     @Size(min = 11,max = 11)
