@@ -14,9 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.Email;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -30,7 +31,9 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column (nullable = false , length = 100)
+	@Column (nullable = false , length = 100)
+	@NotNull
+	@NotBlank
     private String nome;
 
     @Size(min = 11,max = 11)
@@ -43,8 +46,8 @@ public class Cliente implements Serializable {
     @Column (nullable = false , length = 12)
     private String telefone;
 
-    @Column (nullable = false , length = 50)
-    @Email
+	@Column (nullable = false , length = 50)
+	@Email
     private String email;
 
     @Column (nullable = false)

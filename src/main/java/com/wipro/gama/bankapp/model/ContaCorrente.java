@@ -65,8 +65,13 @@ public class ContaCorrente extends Conta implements Serializable {
 				"Saldo atual: "+saldo);
 	}
 
-	public void transferencia(ContaCorrente cc, ContaEspecial ce){
-
+	public void transferir(double value) {
+		if (value > (saldo)) {
+			System.out.println("Saldo insuficiente");
+		}
+		else {
+			saldo = saldo - value;
+		}
 	}
 
 	public Cliente getCliente() {
