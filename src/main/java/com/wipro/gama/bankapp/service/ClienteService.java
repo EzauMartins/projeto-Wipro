@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.wipro.gama.bankapp.model.dto.AddConta;
+import com.wipro.gama.bankapp.exceptionhandler.NotFoundException;
 import com.wipro.gama.bankapp.model.Cliente;
 import com.wipro.gama.bankapp.model.ContaCorrente;
 import com.wipro.gama.bankapp.model.ContaEspecial;
@@ -22,7 +23,7 @@ public class ClienteService {
 	
 	public Cliente findById(Integer id) {   // LISTAR POR ID
         Optional<Cliente> cliente = repository.findById(id);
-        return cliente.orElse(null);
+        return cliente.orElseThrow(()-> new NotFoundException());
     }
 	
 	public List<Cliente> findAll() {      // Retorna Todos
@@ -60,7 +61,7 @@ public class ClienteService {
                 repository.save(cliente);
                 return ResponseEntity.status(HttpStatus.OK).body("Conta adicionada para cliente: "+cliente.getNome());
             default:
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Link n√£o encontrado");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Link n„o encontrado");
         }
 
     }
