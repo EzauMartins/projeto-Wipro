@@ -9,19 +9,10 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.wipro.gama.bankapp.model.Cliente;
-import com.wipro.gama.bankapp.model.dto.AddConta;
-import com.wipro.gama.bankapp.service.ClienteService;
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/cliente")
@@ -36,7 +27,6 @@ public class ClienteController {
     @GetMapping("/{id}")
     @ApiOperation(value = "Retorna um Clientes")
     public ResponseEntity<Cliente> GetById(@PathVariable Integer id) {
-
         Cliente CC = this.service.findById(id);
         return ResponseEntity.ok().body(CC);
     }
@@ -53,7 +43,11 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(CC));
     }
 
-    //FAZER UPDATE
+    @PutMapping("/{id}")
+    public ResponseEntity<Cliente> update(@PathVariable Integer id, @RequestBody Cliente cliente) {
+        Cliente nCliente = service.update(id, cliente);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(nCliente);
+    }
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Deleta Clientes")
@@ -70,12 +64,10 @@ public class ClienteController {
 
 
     @PutMapping("/{idorig}/tranferir/{iddest}")
-    public void Tranferir(@PathVariable Integer idorig, @PathVariable Integer iddest,@RequestBody Valor valor) {
-        service.tranferencia(idorig,iddest,valor);
+    public  ResponseEntity<String> Tranferir(@PathVariable Integer idorig, @PathVariable Integer iddest,@RequestBody Valor valor) {
+       return service.tranferencia(idorig,iddest,valor);
     }
 
 
-
-}
 
 }
