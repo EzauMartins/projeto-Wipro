@@ -1,16 +1,13 @@
 package com.wipro.gama.bankapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Cascade;
+
+
+import javax.persistence.*;
+
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tblContaCorrente")
@@ -19,7 +16,7 @@ public class ContaCorrente extends Conta implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	int id;
+	private int id;
 
 	@OneToOne(cascade = CascadeType.ALL,mappedBy = "CC")
 	@JsonIgnore
@@ -28,13 +25,21 @@ public class ContaCorrente extends Conta implements Serializable {
 	public ContaCorrente() {
 	}
 
-	public ContaCorrente(String numConta, double saldo, String numCartao) {
+	public ContaCorrente(Integer id,String numConta, double saldo, String numCartao) {
+	this.id = id;
 	this.numConta = numConta;
 	this.saldo = saldo;
 	this.numCartao = numCartao;
 	}
 
-	@Override
+	public ContaCorrente(String numConta, double saldo, String numCartao) {
+		this.numConta = numConta;
+		this.saldo = saldo;
+		this.numCartao = numCartao;
+	}
+
+
+    @Override
 	public void saque(double value) {
 		        if (value > saldo){
 		            System.out.println("Saldo Insuficiente");
@@ -74,6 +79,7 @@ public class ContaCorrente extends Conta implements Serializable {
 		}
 	}
 
+	// ====== GET/SET ======
 	public Cliente getCliente() {
 		return cliente;
 	}

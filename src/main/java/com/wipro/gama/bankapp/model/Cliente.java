@@ -1,25 +1,13 @@
 package com.wipro.gama.bankapp.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 @Entity
@@ -31,9 +19,7 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-	@Column (nullable = false , length = 100)
-	@NotNull
-	@NotBlank
+    @Column (nullable = false , length = 100)
     private String nome;
 
     @Size(min = 11,max = 11)
@@ -46,8 +32,7 @@ public class Cliente implements Serializable {
     @Column (nullable = false , length = 12)
     private String telefone;
 
-	@Column (nullable = false , length = 50)
-	@Email
+    @Column (nullable = false , length = 50)
     private String email;
 
     @Column (nullable = false)
@@ -58,12 +43,14 @@ public class Cliente implements Serializable {
     @JoinTable(name ="tblCliente_cc",
             joinColumns = {@JoinColumn(name = "cliente_id" )},
             inverseJoinColumns = {@JoinColumn(name = "cc_id")})
+    @JsonIgnore
     private ContaCorrente CC;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinTable(name ="tblCliente_ce",
             joinColumns = {@JoinColumn(name = "cliente_id" )},
             inverseJoinColumns = {@JoinColumn(name = "ce_id")})
+    @JsonIgnore
     private ContaEspecial CE;
 
     public Cliente(){
@@ -80,19 +67,6 @@ public class Cliente implements Serializable {
         this.CC = CC;
         this.CE = CE;
     }
-
-    /*public Cliente(Integer id, String cpf, String endereco, String nome, String telefone, String email,
-                   Date data_nascimento) {
-        super();
-        this.id = id;
-        this.cpf = cpf;
-        this.endereco = endereco;
-        this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
-        this.data_nascimento = data_nascimento;
-    }*/
-
 
     // ====== GET/SET ======
 

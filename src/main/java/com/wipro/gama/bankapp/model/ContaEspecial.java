@@ -10,9 +10,9 @@ public class ContaEspecial extends Conta{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	int Id;
-	double limiteAdicional;
-	double tax = 5.0;
+	private int Id;
+	private double limiteAdicional;
+	private double tax = 5.0;
 
 	@OneToOne(cascade = CascadeType.ALL,mappedBy = "CE")
 	@JsonIgnore
@@ -26,6 +26,11 @@ public class ContaEspecial extends Conta{
 		this.saldo = saldo;
 		this.limiteAdicional = limiteAdicional;
 		this.numCartao = numCartao;
+	}
+
+	@Override
+	public void dadosConta() {
+
 	}
 
 	@Override
@@ -54,21 +59,8 @@ public class ContaEspecial extends Conta{
 		saldo = saldo + value;
 	}
 
-	
-	@Override
-	public String toString() {
-		return " numConta: " +
-				numConta + "\n saldo: " +
-				saldo + "\n numCartao: " 
-				+ numCartao ;
-	}
-	@Override
-	public void dadosConta() {
-		System.out.println("=======Dados da conta======="+"\n"+
-				"Numero Conta: "+this.numCartao+"\n"+
-				"Saldo atual: "+this.saldo);
-	}
 
+	// ====== GET/SET ======
 
 	public int getId() {
 		return Id;
