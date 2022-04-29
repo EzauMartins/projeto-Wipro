@@ -22,7 +22,7 @@ public class SwaggerConfig {
     public Docket client() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.wipro.gama.bankapp"))
+                .apis(RequestHandlerSelectors.basePackage("com.wipro.gama.bankapp.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(metaInfo());
