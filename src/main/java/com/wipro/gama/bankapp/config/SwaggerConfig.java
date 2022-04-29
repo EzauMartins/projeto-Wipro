@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class SwaggerConfig {
 
     @Bean
-    public Docket client() {
+    public Docket swagger() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.wipro.gama.bankapp.controller"))
@@ -32,14 +32,14 @@ public class SwaggerConfig {
     private ApiInfo metaInfo() {
 
         ApiInfo apiInfo = new ApiInfo(
-                "CARD API",
-                "API CARTÕES",
+                "RECEBANK",
+                "API CLIENTE/CARTÕES",
                 "1.0",
-                "Terms of Service",
-                new Contact("Ezau Martins", "https://github.com/EzauMartins/projeto-Wipro",
+                "TROPA DOS PEDREIROS",
+                new Contact("TROPA DOS PEDREIROS ©", "https://github.com/EzauMartins/projeto-Wipro",
                         "ezaumateus97@gmail.com"),
-                "Apache License Version 2.0",
-                "https://www.apache.org/licesen.html", new ArrayList<VendorExtension>()
+                "EZAU - IVANILDO - MAURO - ALEFF - LARISSA",
+                "https://github.com/EzauMartins/projeto-Wipro", new ArrayList<VendorExtension>()
         );
 
         return apiInfo;
