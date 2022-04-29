@@ -3,6 +3,8 @@ package com.wipro.gama.bankapp.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.wipro.gama.bankapp.exceptionhandler.NotFoundException;
+import com.wipro.gama.bankapp.model.Historico;
 import com.wipro.gama.bankapp.model.dto.AddConta;
 import com.wipro.gama.bankapp.model.Cliente;
 import com.wipro.gama.bankapp.model.ContaCorrente;
@@ -20,10 +22,13 @@ public class ClienteService {
 	
 	@Autowired
 	ClienteRepository repository;
-	
-	public Cliente findById(Integer id) {   // LISTAR POR ID
+
+    @Autowired
+    HistoricoService hsService;
+
+    public Cliente findById(Integer id) {   // LISTAR POR ID
         Optional<Cliente> cliente = repository.findById(id);
-        return cliente.orElse(null);
+        return cliente.orElseThrow(()-> new NotFoundException());
     }
 	
 	public List<Cliente> findAll() {      // Retorna Todos
@@ -34,9 +39,22 @@ public class ClienteService {
         return repository.save(cliente);
     }
 
+    public Cliente update(Integer id, Cliente obj) {
+        Cliente newObj = findById(id);
+        newObj.setNome(obj.getNome());
+        newObj.setCpf(obj.getCpf());
+        newObj.setEmail(obj.getEmail());
+        newObj.setData_nascimento(obj.getData_nascimento());
+        newObj.setEndereco(obj.getEndereco());
+        newObj.setCE(obj.getCE());
+        newObj.setCC(obj.getCC());
+        return repository.save(newObj);
+    }
+
     public void delete(Integer id) {
         repository.deleteById(id);
     }
+
 
     public ResponseEntity<String> addConta(AddConta addConta, String tipo, Integer idCliente){
         Cliente cliente = repository.getById(idCliente);
@@ -59,7 +77,8 @@ public class ClienteService {
         }
 
     }
-    public void tranferencia(int idOrig, int idDest, Valor valor ){
+
+    public ResponseEntity<String> tranferencia(int idOrig, int idDest, Valor valor ){
        String tipoOrig = identTipoContaOrigigem(idOrig);
        String tipoDest = identTipoContaDestino(idDest);
 
@@ -67,21 +86,53 @@ public class ClienteService {
         Cliente clienteDest = repository.getById(idDest);
 
         if (identTipoContaOrigigem(idOrig) == "cc" && identTipoContaDestino(idDest) == "cc" ){
-            clienteOrig.getCC().transferir(valor.getValue());
-            clienteDest.getCC().deposito(valor.getValue());
+
+            if (clienteOrig.getCC().getSaldo() < valor.getValue()){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("saldo em conta insuficiente");
+            }else {
+                clienteOrig.getCC().transferir(valor.getValue());
+                clienteDest.getCC().deposito(valor.getValue());
+            }
+
         } else if(identTipoContaOrigigem(idOrig) == "cc" && identTipoContaDestino(idDest) == "ce"){
+
+            if (clienteOrig.getCC().getSaldo() < valor.getValue()){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("saldo em conta insuficiente");
+            }else {
             clienteOrig.getCC().transferir(valor.getValue());
             clienteDest.getCE().deposito(valor.getValue());
+            }
+
         } else if (identTipoContaOrigigem(idOrig) == "ce" && identTipoContaDestino(idDest) == "cc" ){
+
+            if (clienteOrig.getCE().getSaldo() < valor.getValue()){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("saldo em conta insuficiente");
+            }else {
             clienteOrig.getCE().transferir(valor.getValue());
             clienteDest.getCC().deposito(valor.getValue());
+            }
+
         } else if(identTipoContaOrigigem(idOrig) == "ce" && identTipoContaDestino(idDest) == "ce"){
-            clienteOrig.getCE().transferir(valor.getValue());
-            clienteDest.getCE().deposito(valor.getValue());
+
+            if (clienteOrig.getCE().getSaldo() < valor.getValue()){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("saldo em conta insuficiente");
+            }else {
+                clienteOrig.getCE().transferir(valor.getValue());
+                clienteDest.getCE().deposito(valor.getValue());
+            }
         }
+
         repository.save(clienteOrig);
         repository.save(clienteDest);
 
+        Historico hs = new Historico();
+        hs.setClienteDestino(clienteDest.getNome());
+        hs.setClienteOrigem(clienteOrig.getNome());
+        hs.setValor(valor.getValue());
+
+        hsService.registrarNovaTransacao(hs);
+
+        return ResponseEntity.status(HttpStatus.OK).body("Valor tranferido para "+ clienteDest.getNome());
     }
 
     public String identTipoContaOrigigem(int idOrig){

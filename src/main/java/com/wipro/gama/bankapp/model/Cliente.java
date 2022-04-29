@@ -1,6 +1,7 @@
 package com.wipro.gama.bankapp.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -42,12 +43,14 @@ public class Cliente implements Serializable {
     @JoinTable(name ="tblCliente_cc",
             joinColumns = {@JoinColumn(name = "cliente_id" )},
             inverseJoinColumns = {@JoinColumn(name = "cc_id")})
+    @JsonIgnore
     private ContaCorrente CC;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinTable(name ="tblCliente_ce",
             joinColumns = {@JoinColumn(name = "cliente_id" )},
             inverseJoinColumns = {@JoinColumn(name = "ce_id")})
+    @JsonIgnore
     private ContaEspecial CE;
 
     public Cliente(){
@@ -64,19 +67,6 @@ public class Cliente implements Serializable {
         this.CC = CC;
         this.CE = CE;
     }
-
-    /*public Cliente(Integer id, String cpf, String endereco, String nome, String telefone, String email,
-                   Date data_nascimento) {
-        super();
-        this.id = id;
-        this.cpf = cpf;
-        this.endereco = endereco;
-        this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
-        this.data_nascimento = data_nascimento;
-    }*/
-
 
     // ====== GET/SET ======
 

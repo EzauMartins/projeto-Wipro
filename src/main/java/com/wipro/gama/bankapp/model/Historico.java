@@ -2,43 +2,61 @@ package com.wipro.gama.bankapp.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.util.Date;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 
 @Entity
+@Table(name = "tblHistoricoTransferencia")
 public class Historico {
 
     @Id
-    Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
-    double valor;
+    private String clienteOrigem, clienteDestino;
+
+    private double valor;
 
     @JsonIgnore
-    Date data = new Date(System.currentTimeMillis());
-
-    String Destino;
+    LocalDateTime data = LocalDateTime.now();
 
 
-
-    public Historico(){
-
+    public Historico() {
     }
 
-    public Historico(Integer id, double valor, Date data, String destino) {
+    public Historico(Integer id, String clienteOrigem, String clienteDestino, double valor, LocalDateTime data) {
         this.id = id;
+        this.clienteOrigem = clienteOrigem;
+        this.clienteDestino = clienteDestino;
         this.valor = valor;
         this.data = data;
-        Destino = destino;
     }
 
+
+    // ====== GET/SET ======
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getClienteOrigem() {
+        return clienteOrigem;
+    }
+
+    public void setClienteOrigem(String clienteOrigem) {
+        this.clienteOrigem = clienteOrigem;
+    }
+
+    public String getClienteDestino() {
+        return clienteDestino;
+    }
+
+    public void setClienteDestino(String clienteDestino) {
+        this.clienteDestino = clienteDestino;
     }
 
     public double getValor() {
@@ -49,19 +67,11 @@ public class Historico {
         this.valor = valor;
     }
 
-    public Date getData() {
+    public LocalDateTime getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDateTime data) {
         this.data = data;
-    }
-
-    public String getDestino() {
-        return Destino;
-    }
-
-    public void setDestino(String destino) {
-        Destino = destino;
     }
 }

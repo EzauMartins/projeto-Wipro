@@ -3,6 +3,7 @@ package com.wipro.gama.bankapp.controller;
 import com.wipro.gama.bankapp.model.ContaCorrente;
 import com.wipro.gama.bankapp.model.dto.Valor;
 import com.wipro.gama.bankapp.service.ContaCorrenteService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/contacorrente")
+@CrossOrigin(origins = "*")
 public class ContaCorrenteController {
 
         @Autowired
@@ -30,11 +32,6 @@ public class ContaCorrenteController {
             List<ContaCorrente> listCC = service.findAll();
             return ResponseEntity.ok().body(listCC);
         }
-
-        /* @PostMapping
-          public ResponseEntity<ContaCorrente> Post(@RequestBody ContaCorrente CC) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(service.create(CC));
-         }*/
 
         @PostMapping("/{id}/novaconta")
         public ResponseEntity<String> addConta(@PathVariable Integer id, @RequestBody ContaCorrente CC) {

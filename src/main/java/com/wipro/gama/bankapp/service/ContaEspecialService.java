@@ -1,5 +1,6 @@
 package com.wipro.gama.bankapp.service;
 
+import com.wipro.gama.bankapp.exceptionhandler.NotFoundExceptionContaEspecial;
 import com.wipro.gama.bankapp.model.Cliente;
 import com.wipro.gama.bankapp.model.ContaEspecial;
 import com.wipro.gama.bankapp.model.dto.Valor;
@@ -22,19 +23,15 @@ public class ContaEspecialService {
 
     @Autowired
     ClienteRepository clienteRepository;
-    
-    
+
+
     public ContaEspecial findById(Integer id) {
         Optional<ContaEspecial> obj = repository.findById(id);
-        return obj.orElse(null);
+        return obj.orElseThrow(()-> new NotFoundExceptionContaEspecial());
     }
 
     public List<ContaEspecial> findAll() {
         return repository.findAll();
-    }
-
-    public ContaEspecial create(ContaEspecial obj) {
-        return repository.save(obj);
     }
 
     public ContaEspecial update(Integer id, ContaEspecial ce){

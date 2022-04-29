@@ -1,5 +1,6 @@
 package com.wipro.gama.bankapp.service;
 
+import com.wipro.gama.bankapp.exceptionhandler.NotFoundExceptionContaCorrente;
 import com.wipro.gama.bankapp.model.Cliente;
 import com.wipro.gama.bankapp.model.ContaCorrente;
 import com.wipro.gama.bankapp.model.dto.Valor;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,16 +24,13 @@ public class ContaCorrenteService {
 
     public ContaCorrente findById(Integer id) {   // LISTAR POR ID
         Optional<ContaCorrente> CC = repository.findById(id);
-        return CC.orElse(null);
+        return CC.orElseThrow(()-> new NotFoundExceptionContaCorrente());
     }
 
     public List<ContaCorrente> findAll() {      // Retorna Todos
         return repository.findAll();
     }
 
-    public ContaCorrente create(ContaCorrente CC) {
-        return repository.save(CC);
-    }
 
     public ContaCorrente update(Integer id, ContaCorrente cc){
         ContaCorrente updatecc;
