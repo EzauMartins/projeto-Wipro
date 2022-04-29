@@ -1,4 +1,12 @@
+package com.wipro.gama.bankapp.model;
+
+
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 abstract class Conta {
+
+
     String numConta;
     double saldo;
     String numCartao;
