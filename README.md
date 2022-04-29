@@ -54,11 +54,11 @@ Construimos um diagrama de classes em que tivemos como base uma classe Abstrata 
 
 ## Execução
 Itens nescessarios;<br/>
- - IDE: INTELLIJ/ECLIPSE <br/>
- - BancoDeDados: MySQL <br/>
- - TESTES: Insomia/Postman<br/>
- - Opcional(<a href=" https://drive.google.com/file/d/1yErggvY7DGclkHLvEbsozG8reQotiu-3/view?usp=sharing">DOWNLOAD BASE DE DADOS SQL</a>
-) <br/>
+ - IDE: INTELLIJ/ECLIPSE   <br/>
+ - BancoDeDados: MySQL     <br/>
+ - TESTES: Insomia/Postman <br/>
+
+ - Opcional(<a href="https://drive.google.com/file/d/1yErggvY7DGclkHLvEbsozG8reQotiu-3/view?usp=sharing">DOWNLOAD BASE DE DADOS SQL</a>) <br/>
 
   OBS: O projeto possue implementação Swagger<br/>
    Exemplo acesso swagger(localhost:8080/swagger-ui.html)
