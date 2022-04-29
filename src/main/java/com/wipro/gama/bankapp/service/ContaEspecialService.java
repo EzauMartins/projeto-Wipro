@@ -58,11 +58,34 @@ public class ContaEspecialService {
 
     public ResponseEntity<String> addConta(ContaEspecial newCE, Integer idCliente){
         Cliente cliente = clienteRepository.getById(idCliente);
+        if (!(cliente.getCC() == null)){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cliente possue conta corrente, fazer portabilidade");
+        }
+
         cliente.setCE(newCE);
         clienteRepository.save(cliente);
         return ResponseEntity.status(HttpStatus.OK).body("Conta especial adicionada para cliente: "+cliente.getNome());
 
     }
+
+    public ResponseEntity<String> portabalidade(Valor valor, Integer idCliente){
+        Cliente cliente = clienteRepository.getById(idCliente);
+        if (cliente.getCC() == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cliente não possue conta para portabilidade");
+        }
+
+        ContaEspecial newCE = new ContaEspecial(cliente.getCC().getNumConta(),
+                                                cliente.getCC().getSaldo(),valor.getValue(),
+                                                cliente.getCC().getNumCartao());
+
+        cliente.setCC(null);
+
+        cliente.setCE(newCE);
+        clienteRepository.save(cliente);
+        return ResponseEntity.status(HttpStatus.OK).body("Conta especial adicionada para cliente: "+cliente.getNome());
+
+    }
+
 
 
     
