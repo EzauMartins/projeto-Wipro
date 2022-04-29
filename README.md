@@ -52,6 +52,18 @@ Construimos um diagrama de classes em que tivemos como base uma classe Abstrata 
 
 ![Class Diagram0](https://user-images.githubusercontent.com/75269330/163676279-1565163f-ad69-4855-acf7-d9790e6afd02.png)
 
+## Execução
+Itens nescessarios;<br/>
+ - IDE: INTELLIJ/ECLIPSE <br/>
+ - BancoDeDados: MySQL <br/>
+ - TESTES: Insomia/Postman<br/>
+ - Opcional(<a href=" https://drive.google.com/file/d/1yErggvY7DGclkHLvEbsozG8reQotiu-3/view?usp=sharing">DOWNLOAD BASE DE DADOS SQL</a>
+) <br/>
+
+  OBS: O projeto possue implementação Swagger<br/>
+   Exemplo acesso swagger(localhost:8080/swagger-ui.html)
+  
+
 ## Caso-de-uso
 
 ![UseCase Diagram0](https://user-images.githubusercontent.com/75269330/163676272-68ee40f1-2b1c-4c3b-aa03-ea5656832063.png)
