@@ -1,6 +1,8 @@
 
 <img src="https://user-images.githubusercontent.com/75269330/165877404-fb80afa3-f3ed-4675-a3df-7c218259dde6.jpeg" width="1100" height="400">
 
+## Bem Vindo ao ReceBank
+
 
 <h4 align="center"> 
 </h4>
@@ -17,11 +19,13 @@
 
 :small_blue_diamond: [Funcionalidades](#funcionalidades)
 
-:small_blue_diamond: [Diagrama](#diagrama)
+:small_blue_diamond: [Modelagem ReceBank](#modelagem-recebank)
 
 :small_blue_diamond: [Technologies & Tools](#technologies)
 
 :small_blue_diamond: [Caso de Uso](#caso-de-uso)
+
+:small_blue_diamond: [Time responsável pelo desenvolvimento do projeto](#time-responsável-pelo-desenvolvimento-do-projeto)
 
 
 
@@ -33,20 +37,25 @@ será elaborar uma aplicação que faça gerenciamento de conta bancária, permi
 sejam feitas as operações de criação, consulta e remoção, além das operações de
 saque e depósito e essa conta também deverá ter um cartão de crédito.
 
+## Metodologia
+    
+</p>
+<p align="justify">
+O ReceBank foi desenvolvido utilizando-se da metodologia ágil Scrum. Através da ferramenta trello foi desenvolvido nossa estrutura mediante de um backlog. 
 </p>
 
+## Modelagem ReceBank
 
+<p align="justify">
+Construimos um diagrama de classes em que tivemos como base uma classe Abstrata Conta que servirá como base para as classes ContaCorrente e ContaEspecial. Na classe Conta existem dois métodos abstratos (depósito e saque) que deverão ser implementados nas classes que a estendem obrigatoriamente. Na classe ContaEspecial deve ter um atributo valorLimite que deverá ser testado juntamente com o saldo da conta e no saque poderá ser retirado da conta como um valor a mais.
+</p>
+
+![Class Diagram0](https://user-images.githubusercontent.com/75269330/163676279-1565163f-ad69-4855-acf7-d9790e6afd02.png)
+
+## Caso-de-uso
+
+![UseCase Diagram0](https://user-images.githubusercontent.com/75269330/163676272-68ee40f1-2b1c-4c3b-aa03-ea5656832063.png)
 <h4>
-Time responsável pelo desenvolvimento do projeto
-</h4>
-
-
-
-
-| [<img src="https://avatars.githubusercontent.com/u/60906775?v=4 " width=115 ><br><sub>Ezau</sub>](https://github.com/EzauMartins) | [<img src="https://avatars.githubusercontent.com/u/17453844?v=4" width=115><br><sub>Mauro</sub>](https://github.com/oliveiramauro) |  [<img src="https://avatars.githubusercontent.com/u/75269330?v=4" width=115><br><sub>Ivanildo</sub>](https://github.com/IvanRibeiro011) |
-| :---: | :---: | :---:| 
-[<img src="https://avatars.githubusercontent.com/u/42613597?v=4" width=115><br><sub>Aleff Diniz</sub>](https://github.com/AleffTrajano)|  [<img src="https://pbs.twimg.com/profile_images/1507228576256602128/C7D3Ltha_400x400.jpg" width=115><br><sub>Luva de Pedreiro</sub>](https://www.lance.com.br/fora-de-campo/receba-luva-de-pedreiro-se-torna-o-influenciador-de-futebol-com-mais-seguidores-do-instagram.html) |  [<img src="https://cf.shopee.com.br/file/b4e4ffcb1cedb4c3bfd284cc9332b990" width=115><br><sub>Receba</sub>](https://www.lance.com.br/fora-de-campo/receba-luva-de-pedreiro-se-torna-o-influenciador-de-futebol-com-mais-seguidores-do-instagram.html) |
-
 
 ## Funcionalidades
 
@@ -59,25 +68,23 @@ Time responsável pelo desenvolvimento do projeto
 :heavy_check_mark: Funcionalidade 4
     
 
-## Diagrama
-<p align="justify">
-Neste diagrama de classes tivemos como base uma classe Abstrata Conta que servirá como base para as classes ContaCorrente e ContaEspecial. Na classe Conta existem dois métodos abstratos (depósito e saque) que deverão ser implementados nas classes que a estendem obrigatoriamente. Na classe ContaEspecial deve ter um atributo valorLimite que deverá ser testado juntamente com o saldo da conta e no saque poderá ser retirado da conta como um valor a mais.
-</p>
 
-![Class Diagram0](https://user-images.githubusercontent.com/75269330/163676279-1565163f-ad69-4855-acf7-d9790e6afd02.png)
+## Time responsável pelo desenvolvimento do projeto
+</h4>
 
-## Caso-de-uso
 
-![UseCase Diagram0](https://user-images.githubusercontent.com/75269330/163676272-68ee40f1-2b1c-4c3b-aa03-ea5656832063.png)
 
+
+| [<img src="https://avatars.githubusercontent.com/u/60906775?v=4 " width=115 ><br><sub>Ezau</sub>](https://github.com/EzauMartins) | [<img src="https://avatars.githubusercontent.com/u/17453844?v=4" width=115><br><sub>Mauro</sub>](https://github.com/oliveiramauro) |  [<img src="https://avatars.githubusercontent.com/u/75269330?v=4" width=115><br><sub>Ivanildo</sub>](https://github.com/IvanRibeiro011) |
+| :---: | :---: | :---:| 
+[<img src="https://avatars.githubusercontent.com/u/42613597?v=4" width=115><br><sub>Aleff Diniz</sub>](https://github.com/AleffTrajano)|  [<img src="https://pbs.twimg.com/profile_images/1507228576256602128/C7D3Ltha_400x400.jpg" width=115><br><sub>Luva de Pedreiro</sub>](https://www.lance.com.br/fora-de-campo/receba-luva-de-pedreiro-se-torna-o-influenciador-de-futebol-com-mais-seguidores-do-instagram.html) |  [<img src="https://cf.shopee.com.br/file/b4e4ffcb1cedb4c3bfd284cc9332b990" width=115><br><sub>Receba</sub>](https://www.lance.com.br/fora-de-campo/receba-luva-de-pedreiro-se-torna-o-influenciador-de-futebol-com-mais-seguidores-do-instagram.html) |
 
 ## Technologies
 
 <p align="">
   
- <img src="https://img.shields.io/badge/-JAVA-CB3837?style=flat-square&logo=java&logoColor=white" height="25"/>
- <img src="https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=github" height="25"/>
- <img src="https://logosmarcas.net/wp-content/uploads/2021/03/Trello-Logo-2021-presente.jpg" height="25"/>
+ <img src="https://user-images.githubusercontent.com/75269330/165879769-0bd161dc-3608-434f-86df-f7580d5d5e9a.jpeg" />
+
  </p>   
     
     
