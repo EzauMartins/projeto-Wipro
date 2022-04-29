@@ -39,11 +39,13 @@ public class ClienteController {
     }
 
     @PostMapping
+    @ApiOperation(value = "Cria Cliente")
     public ResponseEntity<Cliente> Post(@Valid @RequestBody  Cliente CC) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(CC));
     }
 
     @PutMapping("/{id}")
+    @ApiOperation(value = "Retorna por id")
     public ResponseEntity<Cliente> update(@PathVariable Integer id, @RequestBody Cliente cliente) {
         Cliente nCliente = service.update(id, cliente);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(nCliente);

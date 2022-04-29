@@ -38,6 +38,12 @@ public class ContaEspecialController {
 			return service.addConta(CE,id);
 		}
 
+		@PutMapping("/{id}/portabidade")
+		public ResponseEntity<String> portablidade(@PathVariable Integer id, @RequestBody Valor valor) {
+			return service.portabalidade(valor,id);
+		}
+
+
 		@PutMapping("/{id}")
 		public ResponseEntity<ContaEspecial> Put(@PathVariable Integer id, @RequestBody ContaEspecial ce) {
 			ContaEspecial updateCe = service.update(id, ce);
