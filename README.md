@@ -54,6 +54,7 @@ Construimos um diagrama de classes em que tivemos como base uma classe Abstrata 
 
 ## Execução
 Itens nescessarios;<br/>
+ - JAVA 11/MAVEN
  - IDE: INTELLIJ/ECLIPSE   <br/>
  - BancoDeDados: MySQL     <br/>
  - TESTES: Insomia/Postman <br/>
